@@ -2,6 +2,10 @@ require:
   - rubocop-rails
   - rubocop-rspec
 
+AllCops:
+  Excludes:
+    - db/schema.rb
+
 Style/Documentation:
   Enabled: false
 
