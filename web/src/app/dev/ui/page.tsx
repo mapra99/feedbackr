@@ -1,4 +1,5 @@
 import { Button, LinkButton } from '@/components/button'
+import UpvoteButton from '@/components/upvote-button'
 
 export default function Ui() {
   return (
@@ -73,6 +74,14 @@ export default function Ui() {
           Danger
         </LinkButton>
       </div>
+
+      <hr />
+
+      <h1 className="text-2xl font-sans test-marian-blue">
+        Interactive Elements
+      </h1>
+
+      <UpvoteButton />
     </section>
   )
 }

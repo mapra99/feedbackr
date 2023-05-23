@@ -17,7 +17,8 @@ module.exports = {
       'glaucous': '#647196',
       'atomic-tangerine': '#F49F85',
       'maya-blue': '#62BCFA',
-      'poppy': '#D73737'
+      'poppy': '#D73737',
+      'periwinkle': '#CFD7FF'
     },
     fontFamily: {
       sans: ['Jost', 'sans-serif']
