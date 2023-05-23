@@ -26,17 +26,19 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.3
+          ruby-version: 3.1.2
 
       - name: Install dependent libraries
         run: sudo apt-get install libpq-dev
 
       - name: Bundle install
         run: |
+          cd api
           gem install bundler
           bundle install --jobs 4 --retry 3
       - name: Setup Database
         run: |
+          cd api
           cp config/database.github-actions.yml config/database.yml
           bundle exec rake db:create
           bundle exec rake db:schema:load
@@ -46,7 +48,9 @@ jobs:
           POSTGRES_PASSWORD: postgres
 
       - name: Run RSpec
-        run: bundle exec rspec  --require rails_helper
+        run: |
+          cd api
+          bundle exec rspec  --require rails_helper
         env:
           RAILS_ENV: test
           POSTGRES_USER: postgres
