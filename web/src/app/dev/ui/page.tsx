@@ -4,6 +4,7 @@ import Tag from '@/components/tag'
 import DropdownList from '@/components/dropdown-list'
 import FilterSelect from '@/components/filter-select'
 import TextField from '@/components/text-field'
+import SelectField from '@/components/select-field'
 
 export default function Ui() {
   return (
@@ -110,6 +111,14 @@ export default function Ui() {
         <TextField />
 
         <TextField error="Something went reaally wrong" />
+
+        <SelectField
+          items={[
+            { id: 'item1', label: 'Item 1', value: 'item-1' },
+            { id: 'item2', label: 'Item 2', value: 'item-2' },
+            { id: 'item3', label: 'Item 3', value: 'item-3' },
+          ]}
+        />
       </div>
     </section>
   )

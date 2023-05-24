@@ -5,7 +5,7 @@ export default function TextField({ className, error, ...props }: TextFieldProps
     <div className="flex flex-col gap-1">
       <input
         className={`
-          font-sans text-base text-marian-blue rounded-md h-12 bg-ghost-white-light px-6 focus:border-savoy-blue focus:outline-none
+          font-sans text-base text-marian-blue rounded-md h-12 bg-ghost-white-light px-6 focus:border-savoy-blue focus:outline-none transition-all
           ${error ? 'border border-poppy' : ''}
           ${className}
         `}

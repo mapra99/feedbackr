@@ -1,26 +1,18 @@
 'use client'
 
-import { useState } from 'react';
 import DropdownList from '@/components/dropdown-list';
 import { ChevronIconUp } from '@/icons';
+import useDropdown from '@/hooks/use-dropdown';
 import type { FilterSelectProps } from './types';
 
 export default function FilterSelect({ items, selectedId, label }: FilterSelectProps) {
-  const [selection, setSelection] = useState<string | undefined>(selectedId)
-  const [open, setOpen] = useState<boolean>(false)
-
-  const selectedItem = selection ? items.find(item => item.id === selection) : undefined
-
-  const handleSelect = (id: string) => {
-    setSelection(id)
-    setOpen(false)
-  }
+  const { open, selectedItem, toggleList, selectItem } = useDropdown({ items, selectedId  })
 
   return (
     <div className="relative flex">
       <button
         className={`h-20 px-4 flex bg-delft-blue rounded-xl text-ghost-white font-sans text-sm items-center`}
-        onClick={() => setOpen(!open)}
+        onClick={toggleList}
       >
         <span className={`${open ? 'opacity-80' : ''}`}>
           { label } :
@@ -33,7 +25,7 @@ export default function FilterSelect({ items, selectedId, label }: FilterSelectP
 
       { open && (
         <div className="absolute top-24 left-0">
-          <DropdownList items={items} selectedId={selection} onSelect={handleSelect} />
+          <DropdownList items={items} selectedId={selectedItem?.id} onSelect={selectItem} />
         </div>
       ) }
     </div>

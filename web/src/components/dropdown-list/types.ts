@@ -1,8 +1,4 @@
-export interface DropdownListItem {
-  id: string
-  label: string
-  value: string
-}
+import type { DropdownListItem } from "@/hooks/use-dropdown/types";
 
 export interface DropdownListProps {
   items: DropdownListItem[]

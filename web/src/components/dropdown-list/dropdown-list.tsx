@@ -13,7 +13,7 @@ export default function DropdownList({ items, selectedId, onSelect }: DropdownLi
   }
 
   return (
-    <div className="w-64 shadow-2xl rounded-xl bg-white">
+    <div className="w-64 shadow-2xl rounded-md bg-white">
       { items.map((item, index) => (
         <>
           <button

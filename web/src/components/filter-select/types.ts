@@ -1,4 +1,4 @@
-import type { DropdownListItem } from "@/components/dropdown-list/types";
+import type { DropdownListItem } from "@/hooks/use-dropdown/types";
 
 export interface FilterSelectProps {
   label: string
