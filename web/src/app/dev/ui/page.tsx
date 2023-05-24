@@ -1,6 +1,8 @@
 import { Button, LinkButton } from '@/components/button'
 import UpvoteButton from '@/components/upvote-button'
 import Tag from '@/components/tag'
+import DropdownList from '@/components/dropdown-list'
+import FilterSelect from '@/components/filter-select'
 
 export default function Ui() {
   return (
@@ -85,6 +87,22 @@ export default function Ui() {
       <div className="flex gap-2">
         <UpvoteButton />
         <Tag />
+        <DropdownList
+          items={[
+            { id: 'item1', label: 'Item 1', value: 'item-1' },
+            { id: 'item2', label: 'Item 2', value: 'item-2' },
+            { id: 'item3', label: 'Item 3', value: 'item-3' },
+          ]}
+        />
+        <FilterSelect
+          label="Sort By"
+          selectedId='item1'
+          items={[
+            { id: 'item1', label: 'Item 1', value: 'item-1' },
+            { id: 'item2', label: 'Item 2', value: 'item-2' },
+            { id: 'item3', label: 'Item 3', value: 'item-3' },
+          ]}
+        />
       </div>
     </section>
   )
