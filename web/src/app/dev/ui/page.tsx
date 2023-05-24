@@ -1,5 +1,6 @@
 import { Button, LinkButton } from '@/components/button'
 import UpvoteButton from '@/components/upvote-button'
+import Tag from '@/components/tag'
 
 export default function Ui() {
   return (
@@ -81,7 +82,10 @@ export default function Ui() {
         Interactive Elements
       </h1>
 
-      <UpvoteButton />
+      <div className="flex gap-2">
+        <UpvoteButton />
+        <Tag />
+      </div>
     </section>
   )
 }
