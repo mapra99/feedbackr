@@ -3,6 +3,7 @@ import UpvoteButton from '@/components/upvote-button'
 import Tag from '@/components/tag'
 import DropdownList from '@/components/dropdown-list'
 import FilterSelect from '@/components/filter-select'
+import TextField from '@/components/text-field'
 
 export default function Ui() {
   return (
@@ -84,7 +85,7 @@ export default function Ui() {
         Interactive Elements
       </h1>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 my-2">
         <UpvoteButton />
         <Tag />
         <DropdownList
@@ -103,6 +104,12 @@ export default function Ui() {
             { id: 'item3', label: 'Item 3', value: 'item-3' },
           ]}
         />
+      </div>
+
+      <div className="flex gap-2 my-2">
+        <TextField />
+
+        <TextField error="Something went reaally wrong" />
       </div>
     </section>
   )
