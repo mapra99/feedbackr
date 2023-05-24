@@ -16,11 +16,11 @@ export default function UpvoteButton({}) {
 
   return (
     <button
-      className="h-14 w-10 p-1 font-sans text-xs font-bold rounded-xl flex flex-col justify-center items-center gap-2 bg-ghost-white hover:bg-periwinkle transition-all active:bg-savoy-blue active:text-white"
+      className={`h-14 w-10 p-1 font-sans text-xs font-bold rounded-xl flex flex-col justify-center items-center gap-2 transition-all ${isActive ? 'bg-savoy-blue text-white' : 'text-marian-blue bg-ghost-white hover:bg-periwinkle'}`}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
     >
-      <div className="w-3">
+      <div className={`w-3 ${isActive ? 'text-white' : 'text-savoy-blue'}`}>
         <ChevronIconUp />
       </div>
 
