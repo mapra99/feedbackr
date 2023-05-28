@@ -18,7 +18,9 @@ module.exports = {
       'atomic-tangerine': '#F49F85',
       'maya-blue': '#62BCFA',
       'poppy': '#D73737',
-      'periwinkle': '#CFD7FF'
+      'periwinkle': '#CFD7FF',
+      'blush': '#E84D70',
+      'picton-blue': '#28A7ED'
     },
     fontFamily: {
       sans: ['Jost', 'sans-serif']
