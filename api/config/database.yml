@@ -24,6 +24,8 @@ default: &default
 development:
   <<: *default
   database: feedbackr_api_development
+  username: <%= Rails.application.credentials.db!.fetch(:username) %>
+  password: <%= Rails.application.credentials.db!.fetch(:password) %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
