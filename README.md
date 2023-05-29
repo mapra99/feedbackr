@@ -1,63 +1,28 @@
 # Feedbackr
 
-## Local Setup Instructions
+## Local setup instructions
+
+Requirements:
+- Docker
 
 1. Clone the repo
 ```bash
 git clone git@github.com:mapra99/feedbackr.git
 ```
 
-2. Install ruby. rbenv is recommended
+2. Build the docker images
 ```bash
-rbenv install 3.1.2
-```
-
-3. Install foreman
-```bash
-gem install foreman
-```
-
-### API Setup
-
-1. cd into `api`
-```bash
-cd api
-```
-
-2. Install ruby dependencies
-```bash
-bundle install
+docker compose build
 ```
 
 3. Set up the DB
 ```bash
-rails db:create
-rails db:migrate
+docker compose run api rails db:setup
 ```
 
-### Web Setup
-
-1. cd into `web`
+4. Run services
 ```bash
-cd web
-```
-
-2. Install node. NVM is recommended
-```bash
-nvm install 18
-nvm use 18
-```
-
-3. Install node dependencies
-```bash
-npm install --save-dev
-```
-
-### Local dev server
-
-Run foreman at the root of the project to start all processes
-```bash
-foreman start
+docker compose up
 ```
 
 Go to http://localhost:3000 to see the UI
