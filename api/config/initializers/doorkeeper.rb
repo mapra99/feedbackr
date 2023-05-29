@@ -86,6 +86,7 @@ Doorkeeper.configure do
   # Doorkeeper responds to a requests.
   #
   api_only
+  base_controller 'ActionController::API'
 
   # Enforce token request content type to application/x-www-form-urlencoded.
   # It is not enabled by default to not break prior versions of the gem.

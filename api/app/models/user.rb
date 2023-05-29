@@ -15,4 +15,7 @@ class User < ApplicationRecord
            foreign_key: :resource_owner_id,
            dependent: :delete_all,
            inverse_of: false
+
+  validates_presence_of :first_name, :last_name, :username
+  validates_uniqueness_of :username
 end
