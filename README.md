@@ -15,7 +15,10 @@ git clone git@github.com:mapra99/feedbackr.git
 docker compose build
 ```
 
-3. Ask for the development key to get the rails credentials and set the key in `config/credentials/development.key`
+3. Ask for the development key to get the rails credentials and set the key in `api/config/credentials/development.key`
+```bash
+echo "<THE KEY>" > api/config/credentials/development.key
+```
 
 4. Set up the DB
 ```bash
