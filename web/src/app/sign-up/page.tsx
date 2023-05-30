@@ -1,13 +1,26 @@
+'use client'
+
 import Form from '@/components/form'
 import TextField from '@/components/text-field'
 import { Button } from '@/components/button'
 import { BotIcon } from "@/icons"
 
+import type { FormEvent } from 'react';
+
 export default function SignUp() {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    const response = await fetch('/api/sign-up', { method: 'POST', body: formData })
+    const result = await response.json()
+    console.log(result)
+  }
+
   return (
     <main className="flex items-center justify-center w-full min-h-screen">
-      <div className="my-8 mx-6 max-w-lg w-full">
-        <Form icon={<BotIcon />}>
+      <div className="my-20 mx-6 max-w-lg w-full">
+        <Form icon={<BotIcon />} onSubmit={handleSubmit}>
           <h1 className="text-xl sm:text-3xl font-sans text-marian-blue w-full mt-5 sm:mt-3 mb-6 sm:mb-10">
             Sign Up
           </h1>
@@ -15,12 +28,17 @@ export default function SignUp() {
           <div className="flex flex-col w-full gap-6 mb-10 sm:mb-8">
             <label className=" flex flex-col gap-2 w-full font-sans text-xs font-bold sm:text-lg text-marian-blue">
               First Name
-              <TextField id="first_name" name="first_name" placeholder="Jhon" type="text" className="text-xs sm:text-base"/>
+              <TextField id="firstName" name="firstName" placeholder="Jhon" type="text" className="text-xs sm:text-base"/>
             </label>
 
             <label className=" flex flex-col gap-2 w-full font-sans text-xs font-bold sm:text-lg text-marian-blue">
               Last Name
-              <TextField id="last_name" name="last_name" placeholder="Doe" type="text" className="text-xs sm:text-base"/>
+              <TextField id="lastName" name="lastName" placeholder="Doe" type="text" className="text-xs sm:text-base"/>
+            </label>
+
+            <label className=" flex flex-col gap-2 w-full font-sans text-xs font-bold sm:text-lg text-marian-blue">
+              Username
+              <TextField id="username" name="username" placeholder="jhon.doe" type="text" className="text-xs sm:text-base"/>
             </label>
 
             <label className=" flex flex-col gap-2 w-full font-sans text-xs font-bold sm:text-lg text-marian-blue">
@@ -35,7 +53,7 @@ export default function SignUp() {
 
             <label className=" flex flex-col gap-2 w-full font-sans text-lg text-marian-blue">
               Confirm your Password
-              <TextField id="password_confirmation" name="password_confirmation" placeholder="********" type="password" />
+              <TextField id="passwordConfirmation" name="passwordConfirmation" placeholder="********" type="password" />
             </label>
           </div>
 
