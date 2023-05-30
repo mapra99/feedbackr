@@ -23,3 +23,28 @@ export const SignUpErrorsSchema = z.object({
 })
 
 export type SignUpErrors = z.infer<typeof SignUpErrorsSchema>
+
+export const LoginParamSchema = z.object({
+  email: z.string().email(),
+  password: z.string()
+})
+
+export type LoginParams = z.infer<typeof LoginParamSchema>
+
+export const AccessTokenSchema = z.object({
+  accessToken: z.string(),
+  tokenType: z.string(),
+  expiresIn: z.number(),
+  createdAt: z.number(),
+  scope: z.enum(['read', 'write'])
+})
+
+export type AccessToken = z.infer<typeof AccessTokenSchema>
+
+export const LoginErrorsSchema = z.object({
+  errors: z.object({
+    general: z.array(z.string()).optional()
+  })
+})
+
+export type LoginErrors = z.infer<typeof LoginErrorsSchema>

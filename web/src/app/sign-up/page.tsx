@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation';
 import Form from '@/components/form'
 import TextField from '@/components/text-field'
 import { Button } from '@/components/button'
@@ -12,6 +13,7 @@ import type { SignUpErrors } from '@/feedbackr-api/auth/types'
 
 export default function SignUp() {
   const [errors, setErrors] = useState<SignUpErrors | null>(null)
+  const router = useRouter();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -22,6 +24,8 @@ export default function SignUp() {
 
     if (response.status === 422) {
       setErrors(SignUpErrorsSchema.parse(result))
+    } else if (response.status === 200) {
+      router.push('/')
     }
   }
 
