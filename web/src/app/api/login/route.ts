@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import * as yup from 'yup';
 import { login } from '@/feedbackr-api/v1/auth';
-import { LoginParamSchema } from '@/feedbackr-api/v1/auth/types'
+import { LoginParamSchema, AccessTokenSchema } from '@/feedbackr-api/v1/auth/types'
 
 
 const schema = yup.object({
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
   const { success, result } = await login(sanitizedParams);
   if (success) {
     const response = NextResponse.json({ success: true }, { status: 200 })
-    response.cookies.set('accessToken', result.accessToken, { httpOnly: true })
+    response.cookies.set('accessToken', AccessTokenSchema.parse(result).accessToken, { httpOnly: true })
 
     return response;
   } else {
