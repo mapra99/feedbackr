@@ -16,6 +16,7 @@ class User < ApplicationRecord
            dependent: :delete_all,
            inverse_of: false
 
-  validates_presence_of :first_name, :last_name, :username
-  validates_uniqueness_of :username
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :username, presence: true, uniqueness: true
 end
