@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./.docker/volumes/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: feedbackr
+      POSTGRES_PASSWORD: superpass
+  api:
+    platform: linux/x86_64
+    build: ./api/
+    command: bin/rails server -b 0.0.0.0
+    volumes:
+      - ./api:/app
+    ports:
+      - "3001:3000"
+    environment:
+      RAILS_ENV: development
+    depends_on:
+      - db
+  web:
+    build: ./web/
+    command: npm run dev
+    volumes:
+      - ./web/:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
