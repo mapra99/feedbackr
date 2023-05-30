@@ -2,8 +2,12 @@ require:
   - rubocop-rails
   - rubocop-rspec
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
+AllCops:
+  Excludes:
+    - db/schema.rb
 
 Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
   Enabled: false

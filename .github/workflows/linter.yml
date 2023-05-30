@@ -13,6 +13,7 @@ jobs:
       - name: rubocop
         uses: reviewdog/action-rubocop@v2
         with:
+          workdir: api
           rubocop_version: gemfile
           rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
 
