@@ -1,4 +1,4 @@
-import { sendRequest } from "@/feedbackr-api/client"
+import { sendRequest } from "@/feedbackr-api/v1/client"
 import { AccessTokenSchema } from "./types"
 import type { LoginParams } from './types'
 

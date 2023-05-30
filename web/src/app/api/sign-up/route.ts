@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import * as yup from 'yup';
-import { signUp } from '@/feedbackr-api/auth';
-import { SignUpParamsSchema } from '@/feedbackr-api/auth/types'
+import { signUp, login } from '@/feedbackr-api/v1/auth';
+import { SignUpParamsSchema, AccessTokenSchema } from '@/feedbackr-api/v1/auth/types'
 
 
 const schema = yup.object({
@@ -37,9 +37,15 @@ export async function POST(request: Request) {
 
   const sanitizedParams =  SignUpParamsSchema.parse(paramsObj);
   const { success, result } = await signUp(sanitizedParams);
-  if (success) {
-    return NextResponse.json(result);
-  } else {
+  if (!success) {
     return NextResponse.json(result, { status: 422 });
   }
+
+  const { success: loginSuccess, result: loginData } = await login({ email: sanitizedParams.email, password: sanitizedParams.password });
+  if (!loginSuccess) { throw new Error(`Unexpected error during login params ${JSON.stringify(sanitizedParams)}`) }
+
+  const response = NextResponse.json(result);
+  response.cookies.set('accessToken', AccessTokenSchema.parse(loginData).accessToken, { httpOnly: true });
+
+  return response;
 }

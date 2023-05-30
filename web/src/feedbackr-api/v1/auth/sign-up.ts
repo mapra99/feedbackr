@@ -1,6 +1,6 @@
-import { sendRequest } from "@/feedbackr-api/client"
+import { sendRequest } from "@/feedbackr-api/v1/client"
 import { camelizeKeys } from "@/utils/camelize"
-import { UserSchema } from '@/feedbackr-api/schemas'
+import { UserSchema } from '@/feedbackr-api/v1/schemas'
 import { SignUpErrorsSchema } from "./types"
 import type { SignUpParams } from './types'
 

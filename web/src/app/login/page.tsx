@@ -6,10 +6,10 @@ import Form from '@/components/form'
 import TextField from '@/components/text-field'
 import { Button } from '@/components/button'
 import { BotIcon } from "@/icons"
-import { LoginErrorsSchema } from '@/feedbackr-api/auth/types'
+import { LoginErrorsSchema } from '@/feedbackr-api/v1/auth/types'
 
 import type { FormEvent } from 'react';
-import type { LoginErrors } from '@/feedbackr-api/auth/types'
+import type { LoginErrors } from '@/feedbackr-api/v1/auth/types'
 
 export default function Login() {
   const [errors, setErrors] = useState<LoginErrors | null>(null)
@@ -25,6 +25,7 @@ export default function Login() {
       const result = await response.json()
       setErrors(LoginErrorsSchema.parse(result))
     } else if (response.status === 200) {
+      setErrors(null)
       router.push('/')
     }
   }

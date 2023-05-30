@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import * as yup from 'yup';
-import { login } from '@/feedbackr-api/auth';
-import { LoginParamSchema } from '@/feedbackr-api/auth/types'
+import { login } from '@/feedbackr-api/v1/auth';
+import { LoginParamSchema } from '@/feedbackr-api/v1/auth/types'
 
 
 const schema = yup.object({

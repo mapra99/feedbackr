@@ -6,10 +6,10 @@ import Form from '@/components/form'
 import TextField from '@/components/text-field'
 import { Button } from '@/components/button'
 import { BotIcon } from "@/icons"
-import { SignUpErrorsSchema } from '@/feedbackr-api/auth/types'
+import { SignUpErrorsSchema } from '@/feedbackr-api/v1/auth/types'
 
 import type { FormEvent } from 'react';
-import type { SignUpErrors } from '@/feedbackr-api/auth/types'
+import type { SignUpErrors } from '@/feedbackr-api/v1/auth/types'
 
 export default function SignUp() {
   const [errors, setErrors] = useState<SignUpErrors | null>(null)
@@ -25,11 +25,10 @@ export default function SignUp() {
     if (response.status === 422) {
       setErrors(SignUpErrorsSchema.parse(result))
     } else if (response.status === 200) {
+      setErrors(null)
       router.push('/')
     }
   }
-
-  console.log(errors)
 
   return (
     <main className="flex items-center justify-center w-full min-h-screen">
