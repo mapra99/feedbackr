@@ -1,21 +1,31 @@
 'use client'
 
+import { useState } from 'react'
 import Form from '@/components/form'
 import TextField from '@/components/text-field'
 import { Button } from '@/components/button'
 import { BotIcon } from "@/icons"
+import { SignUpErrorsSchema } from '@/feedbackr-api/auth/types'
 
 import type { FormEvent } from 'react';
+import type { SignUpErrors } from '@/feedbackr-api/auth/types'
 
 export default function SignUp() {
+  const [errors, setErrors] = useState<SignUpErrors | null>(null)
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
     const response = await fetch('/api/sign-up', { method: 'POST', body: formData })
     const result = await response.json()
-    console.log(result)
+
+    if (response.status === 422) {
+      setErrors(SignUpErrorsSchema.parse(result))
+    }
   }
+
+  console.log(errors)
 
   return (
     <main className="flex items-center justify-center w-full min-h-screen">
@@ -25,43 +35,47 @@ export default function SignUp() {
             Sign Up
           </h1>
 
+          { errors?.errors.general ? (
+            <ul className="flex flex-col w-full font-sans text-xs !font-normal sm:text-xs text-poppy bg-puppy/60 mb-6 sm:mb-10">
+              { errors?.errors.general.map((error, index) => (
+                <li key={index}>{error}</li>
+              )) }
+            </ul>
+          ) : null}
+
           <div className="flex flex-col w-full gap-6 mb-10 sm:mb-8">
             <label className=" flex flex-col gap-2 w-full font-sans text-xs font-bold sm:text-lg text-marian-blue">
               First Name
-              <TextField id="firstName" name="firstName" placeholder="Jhon" type="text" className="text-xs sm:text-base"/>
+              <TextField id="firstName" name="firstName" placeholder="Jhon" type="text" className="text-xs sm:text-base" error={errors?.errors.firstName?.join(', ')} />
             </label>
 
             <label className=" flex flex-col gap-2 w-full font-sans text-xs font-bold sm:text-lg text-marian-blue">
               Last Name
-              <TextField id="lastName" name="lastName" placeholder="Doe" type="text" className="text-xs sm:text-base"/>
+              <TextField id="lastName" name="lastName" placeholder="Doe" type="text" className="text-xs sm:text-base" error={errors?.errors.lastName?.join(', ')} />
             </label>
 
             <label className=" flex flex-col gap-2 w-full font-sans text-xs font-bold sm:text-lg text-marian-blue">
               Username
-              <TextField id="username" name="username" placeholder="jhon.doe" type="text" className="text-xs sm:text-base"/>
+              <TextField id="username" name="username" placeholder="jhon.doe" type="text" className="text-xs sm:text-base" error={errors?.errors.username?.join(', ')} />
             </label>
 
             <label className=" flex flex-col gap-2 w-full font-sans text-xs font-bold sm:text-lg text-marian-blue">
               Email
-              <TextField id="email" name="email" placeholder="email@example.com" type="email" className="text-xs sm:text-base"/>
+              <TextField id="email" name="email" placeholder="email@example.com" type="email" className="text-xs sm:text-base" error={errors?.errors.email?.join(', ')} />
             </label>
 
             <label className=" flex flex-col gap-2 w-full font-sans text-xs font-bold sm:text-lg text-marian-blue">
               Password
-              <TextField id="password" name="password" placeholder="********" type="password" className="text-xs sm:text-base"/>
+              <TextField id="password" name="password" placeholder="********" type="password" className="text-xs sm:text-base" error={errors?.errors.password?.join(', ')} />
             </label>
 
             <label className=" flex flex-col gap-2 w-full font-sans text-lg text-marian-blue">
               Confirm your Password
-              <TextField id="passwordConfirmation" name="passwordConfirmation" placeholder="********" type="password" />
+              <TextField id="passwordConfirmation" name="passwordConfirmation" placeholder="********" type="password" error={errors?.errors.passwordConfirmation?.join(', ')} />
             </label>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-end">
-            <Button type="button" variant="tertiary" className="text-xs !font-bold sm:text-sm">
-              Cancel
-            </Button>
-
             <Button type="submit" variant="primary" className="text-xs !font-bold sm:text-sm">
               Sign Up
             </Button>

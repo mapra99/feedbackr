@@ -16,7 +16,9 @@ export const SignUpErrorsSchema = z.object({
     lastName: z.array(z.string()).optional(),
     email: z.array(z.string()).optional(),
     password: z.array(z.string()).optional(),
-    username: z.array(z.string()).optional()
+    username: z.array(z.string()).optional(),
+    passwordConfirmation: z.array(z.string()).optional(),
+    general: z.array(z.string()).optional()
   })
 })
 

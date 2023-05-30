@@ -32,14 +32,14 @@ export async function POST(request: Request) {
   const paramsObj = Object.fromEntries(paramsFormData)
   const errors = await validateParams(paramsObj);
   if (errors.length > 0) {
-    return NextResponse.json({ errors }, { status: 422 });
+    return NextResponse.json({ errors: { general: errors }}, { status: 422 });
   }
 
   const sanitizedParams =  SignUpParamsSchema.parse(paramsObj);
   const { success, result } = await signUp(sanitizedParams);
   if (success) {
-    return NextResponse.json(result, { status: 422 });
-  } else {
     return NextResponse.json(result);
+  } else {
+    return NextResponse.json(result, { status: 422 });
   }
 }
