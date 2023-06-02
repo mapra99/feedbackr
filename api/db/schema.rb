@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_02_020415) do
+ActiveRecord::Schema.define(version: 2023_06_02_155355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "issues", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "detail", null: false
+    t.string "uuid", null: false
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_issues_on_product_id"
+    t.index ["user_id"], name: "index_issues_on_user_id"
+    t.index ["uuid"], name: "index_issues_on_uuid", unique: true
+  end
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
@@ -81,6 +94,8 @@ ActiveRecord::Schema.define(version: 2023_06_02_020415) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "issues", "products"
+  add_foreign_key "issues", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"

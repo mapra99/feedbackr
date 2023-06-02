@@ -7,6 +7,10 @@ RSpec.describe Product, type: :model do
     it { is_expected.to validate_presence_of(:name) }
   end
 
+  describe 'associations' do
+    it { is_expected.to have_many(:issues) }
+  end
+
   describe 'slug' do
     subject(:product) { build(:product, name: 'My Product') }
 
@@ -14,7 +18,7 @@ RSpec.describe Product, type: :model do
       product.save!
     end
 
-    it "generates a slug" do
+    it 'generates a slug' do
       expect(product.slug).to match('my-product')
     end
   end
