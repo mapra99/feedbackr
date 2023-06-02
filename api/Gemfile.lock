@@ -62,6 +62,7 @@ GEM
       zeitwerk (~> 2.3)
     ast (2.4.2)
     bcrypt (3.1.18)
+    blueprinter (0.25.3)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -94,17 +95,6 @@ GEM
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     json (2.6.3)
-    jsonapi-deserializable (0.2.0)
-    jsonapi-parser (0.1.1)
-    jsonapi-rails (0.4.1)
-      jsonapi-parser (~> 0.1.0)
-      jsonapi-rb (~> 0.5.0)
-    jsonapi-rb (0.5.0)
-      jsonapi-deserializable (~> 0.2.0)
-      jsonapi-serializable (~> 0.3.0)
-    jsonapi-renderer (0.2.2)
-    jsonapi-serializable (0.3.1)
-      jsonapi-renderer (~> 0.2.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -250,6 +240,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  blueprinter
   bootsnap (>= 1.4.4)
   byebug
   devise (~> 4.9.2)
@@ -257,7 +248,6 @@ DEPENDENCIES
   factory_bot_rails
   faker
   friendly_id (~> 5.1)
-  jsonapi-rails
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)

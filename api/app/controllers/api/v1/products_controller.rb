@@ -2,7 +2,7 @@ module Api
   module V1
     class ProductsController < BaseController
       def show
-        render jsonapi: product, class: { Product: ::V1::SerializableProduct }
+        render json: ::V1::ProductsBlueprint.render(product)
       end
 
       private

@@ -2,21 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::ProductsController, type: :controller do
   xdescribe 'GET #show' do
-    let(:product) { create(:product) }
+    let(:product) { create(:product, name: 'My Product') }
     let(:response_payload) { JSON.parse(response.body) }
     let(:expected_payload) do
       {
-        data: {
-          id: product.id.to_s,
-          type: 'products',
-          attributes: {
-            name: product.name,
-            slug: product.slug
-          },
-          jsonapi: {
-            version: '1.0'
-          }
-        }
+        name: 'My Product',
+        slug: 'my-product'
       }
     end
 
