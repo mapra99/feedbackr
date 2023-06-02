@@ -11,6 +11,7 @@ RSpec.describe Issue do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:product) }
+    it { is_expected.to belong_to(:issue_category) }
   end
 
   describe 'uuid' do
