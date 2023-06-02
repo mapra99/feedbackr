@@ -6,6 +6,8 @@ RSpec.describe Issue do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:detail) }
+    it { is_expected.to validate_presence_of(:status) }
+    it { is_expected.to validate_inclusion_of(:status).in_array(Issue::STATUSES.values) }
   end
 
   describe 'associations' do

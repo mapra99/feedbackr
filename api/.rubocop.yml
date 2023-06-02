@@ -11,3 +11,6 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Rails/NotNullColumn:
+  Enabled: false

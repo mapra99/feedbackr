@@ -6,4 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-product = Product.find_or_create_by(name: 'Frontend Mentor')
+Product.find_or_create_by(name: 'Frontend Mentor')
+IssueCategory.find_or_create_by(name: 'bug')
+IssueCategory.find_or_create_by(name: 'enhancement')
+IssueCategory.find_or_create_by(name: 'ux')
+IssueCategory.find_or_create_by(name: 'ui')
+IssueCategory.find_or_create_by(name: 'feature')
