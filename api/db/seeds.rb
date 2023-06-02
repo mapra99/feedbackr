@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Doorkeeper::Application.find_or_create_by(
+  name: 'Feedbackr Web Dev',
+  redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+  scopes: %w[read write],
+  uid: 'uid123',
+  secret: 'supersecret'
+)
