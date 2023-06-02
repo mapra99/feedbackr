@@ -1,12 +1,10 @@
 import Image from 'next/image'
-import { cookies } from 'next/headers';
-import { fetchCurrentUser } from '@/feedbackr-api/v1/auth'
 import { LinkButton } from '@/components/button'
 import LogoutButton from '@/components/logout-button';
+import useAuth from '@/hooks/use-auth';
 
 export default async function Home() {
-  const cookieStore = cookies();
-  const { result: currentUser } = await fetchCurrentUser(cookieStore.get('accessToken')?.value)
+  const { currentUser } = await useAuth({ authorize: false })
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
