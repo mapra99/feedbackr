@@ -4,15 +4,17 @@ import ProductCard from '@/components/product-card'
 import MobileProductCard from "@/components/mobile-product-card"
 import { useSmBreakpoint } from "@/hooks/use-breakpoints"
 
-export default function ProductMenu() {
+import type { ProductMenuProps } from './types'
+
+export default function ProductMenu({ product }: ProductMenuProps) {
   const mobile = !useSmBreakpoint()
 
   return (
     <div>
       { mobile ? (
-        <MobileProductCard />
+        <MobileProductCard product={product} />
       ) : (
-        <ProductCard />
+        <ProductCard product={product} />
       )}
     </div>
   )
