@@ -15,18 +15,18 @@ Doorkeeper::Application.find_or_create_by(
 )
 
 user = User.find_or_initialize_by(
-  first_name: "Rick",
-  last_name: "Grimes",
-  username: "rick-grimes",
-  email: "rick@citadel.com"
+  first_name: 'Rick',
+  last_name: 'Grimes',
+  username: 'rick-grimes',
+  email: 'rick@citadel.com'
 )
 
-user.update(password: "password", password_confirmation: "password")
+user.update(password: 'password', password_confirmation: 'password')
 
-bug = IssueCategory.find_or_create_by(name: 'bug')
+_bug = IssueCategory.find_or_create_by(name: 'bug')
 enhancement = IssueCategory.find_or_create_by(name: 'enhancement')
-ux = IssueCategory.find_or_create_by(name: 'ux')
-ui = IssueCategory.find_or_create_by(name: 'ui')
+_ux = IssueCategory.find_or_create_by(name: 'ux')
+_ui = IssueCategory.find_or_create_by(name: 'ui')
 feature = IssueCategory.find_or_create_by(name: 'feature')
 
 product = Product.find_or_create_by(name: 'Frontend Mentor')
