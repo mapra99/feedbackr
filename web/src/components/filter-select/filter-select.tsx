@@ -24,7 +24,7 @@ export default function FilterSelect({ items, selectedId, label }: FilterSelectP
       </button>
 
       { open && (
-        <div className="absolute top-[calc(100%+0.5rem)] left-0">
+        <div className="absolute top-[calc(100%+0.5rem)] left-0 z-10">
           <DropdownList items={items} selectedId={selectedItem?.id} onSelect={selectItem} />
         </div>
       ) }

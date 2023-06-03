@@ -31,11 +31,20 @@ feature = IssueCategory.find_or_create_by(name: 'feature')
 
 product = Product.find_or_create_by(name: 'Frontend Mentor')
 
-issue = Issue.find_or_create_by(
+Issue.find_or_create_by(
   product:,
   title: 'Add tags for solutions',
   detail: 'Easier to search for solutions based on a specific stack.',
   issue_category: enhancement,
+  status: 'planned',
+  user:
+)
+
+Issue.find_or_create_by(
+  product:,
+  title: 'Add a dark theme option',
+  detail: 'It would help people with light sensitivities and who prefer dark mode.',
+  issue_category: feature,
   status: 'planned',
   user:
 )
