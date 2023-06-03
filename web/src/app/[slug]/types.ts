@@ -1,5 +1,6 @@
+import type { ReactNode } from 'react'
+
 export interface ProductPageProps {
-  params: {
-    slug: string
-  }
+  issues: ReactNode
+  product: ReactNode
 }
