@@ -1,4 +1,4 @@
-'use server'
+import 'server-only'
 
 import { camelizeKeys } from '@/utils/camelize'
 import { snakelizeKeys } from '@/utils/snakelize'

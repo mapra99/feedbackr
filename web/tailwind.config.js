@@ -20,7 +20,8 @@ module.exports = {
       'poppy': '#D73737',
       'periwinkle': '#CFD7FF',
       'blush': '#E84D70',
-      'picton-blue': '#28A7ED'
+      'picton-blue': '#28A7ED',
+      'lavender': '#CDD2EE'
     },
     fontFamily: {
       sans: ['Jost', 'sans-serif']

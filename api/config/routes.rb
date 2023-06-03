@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       resource :health, only: [:show]
       resource :profile, only: [:show]
+      resources :products, only: [:show], param: :slug do
+        resources :issues, only: %i[index show], param: :uuid
+      end
     end
   end
 end

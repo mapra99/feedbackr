@@ -27,7 +27,7 @@ export default function SelectField({ items, selectedId }: SelectFieldProps) {
       </button>
 
       { open && (
-        <div className="absolute top-0 left-0">
+        <div className="absolute top-0 left-0 z-10">
           <DropdownList items={items} selectedId={selectedItem?.id} onSelect={selectItem} />
         </div>
       ) }
