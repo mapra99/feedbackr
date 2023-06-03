@@ -9,9 +9,9 @@ export default function FilterSelect({ items, selectedId, label }: FilterSelectP
   const { open, selectedItem, toggleList, selectItem } = useDropdown({ items, selectedId  })
 
   return (
-    <div className="relative flex">
+    <div className="relative flex h-full">
       <button
-        className={`h-20 px-4 flex bg-delft-blue rounded-xl text-ghost-white font-sans text-sm items-center`}
+        className={`h-full flex bg-delft-blue rounded-xl text-ghost-white font-sans text-sm items-center`}
         onClick={toggleList}
       >
         <span className={`${open ? 'opacity-80' : ''}`}>
@@ -24,7 +24,7 @@ export default function FilterSelect({ items, selectedId, label }: FilterSelectP
       </button>
 
       { open && (
-        <div className="absolute top-24 left-0">
+        <div className="absolute top-[calc(100%+0.5rem)] left-0">
           <DropdownList items={items} selectedId={selectedItem?.id} onSelect={selectItem} />
         </div>
       ) }

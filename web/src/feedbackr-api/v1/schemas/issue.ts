@@ -1,6 +1,7 @@
 import z from 'zod'
 
-import { IssueCategorySchema, UserSchema } from './'
+import { IssueCategorySchema } from './issue-category'
+import { UserSchema } from './user'
 
 export const IssueSchema = z.object({
   uuid: z.string(),

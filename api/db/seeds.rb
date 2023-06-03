@@ -14,6 +14,15 @@ Doorkeeper::Application.find_or_create_by(
   secret: 'supersecret'
 )
 
+user = User.find_or_initialize_by(
+  first_name: "Rick",
+  last_name: "Grimes",
+  username: "rick-grimes",
+  email: "rick@citadel.com"
+)
+
+user.update(password: "password", password_confirmation: "password")
+
 Product.find_or_create_by(name: 'Frontend Mentor')
 
 IssueCategory.find_or_create_by(name: 'bug')
