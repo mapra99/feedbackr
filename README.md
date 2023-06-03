@@ -10,24 +10,16 @@ Requirements:
 git clone git@github.com:mapra99/feedbackr.git
 ```
 
-2. Build the docker images
+2. Start the docker deamon if you haven't
+
+3. Ask for the development key to get the rails credentials and run the setup script
 ```bash
-docker compose build
+bin/dev/setup <THE KEY>
 ```
 
-3. Ask for the development key to get the rails credentials and set the key in `api/config/credentials/development.key`
+4. Start the app
 ```bash
-echo "<THE KEY>" > api/config/credentials/development.key
-```
-
-4. Set up the DB
-```bash
-docker compose run api rails db:setup
-```
-
-5. Run services
-```bash
-docker compose up
+bin/dev/start
 ```
 
 Go to http://localhost:3000 to see the UI
