@@ -1,0 +1,8 @@
+#! /bin/sh
+
+# Run this script to start the development environment. It will start the docker containers.
+# Usage:
+# bin/dev/start
+
+echo "Starting development environment..."
+docker-compose up
