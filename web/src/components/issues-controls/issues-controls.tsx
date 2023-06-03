@@ -16,7 +16,7 @@ export default function IssuesControls() {
   const mobile = !useSmBreakpoint()
 
   return (
-    <div className="w-full bg-delft-blue h-16 sm:h-20 px-6 text-white flex items-center justify-between sm:rounded-lg">
+    <div className="w-full bg-delft-blue h-16 sm:h-20 px-6 text-white flex items-center justify-between sm:rounded-xl">
       <div className="flex gap-8 items-center">
         <div className={`${mobile ? 'hidden' : 'flex'} items-center gap-3`}>
           <div className="w-6 h-6 text-white">

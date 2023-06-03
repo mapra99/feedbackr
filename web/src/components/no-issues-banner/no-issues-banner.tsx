@@ -3,7 +3,7 @@ import { DetectiveIcon } from "@/icons"
 
 export default function NoIssuesBanner() {
   return (
-    <div className="bg-white rounded-lg py-20 sm:py-28 px-6 flex justify-center items-center flex-col">
+    <div className="bg-white rounded-xl py-20 sm:py-28 px-6 flex justify-center items-center flex-col">
       <div className="h-28 w-28 sm:w-36 sm:h-36 mb-10 sm:mb-14">
         <DetectiveIcon />
       </div>

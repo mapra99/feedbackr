@@ -13,7 +13,7 @@ export default function UpvoteButton({}) {
   return (
     <button
       className={`
-        h-14 w-10 p-1 font-sans text-xs font-bold rounded-xl flex flex-col justify-center items-center gap-2 transition-all
+        h-8 sm:h-14 w-20 sm:w-10 px-4 sm:px-1 p-1 font-sans text-xs font-bold rounded-xl flex flex-row sm:flex-col justify-between sm:justify-center items-center gap-2 transition-all
         ${selected ? 'bg-savoy-blue text-white hover:opacity-80' : 'text-marian-blue bg-ghost-white hover:bg-periwinkle'}
       `}
       onClick={handleClick}

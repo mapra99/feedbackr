@@ -23,10 +23,19 @@ user = User.find_or_initialize_by(
 
 user.update(password: "password", password_confirmation: "password")
 
-Product.find_or_create_by(name: 'Frontend Mentor')
+bug = IssueCategory.find_or_create_by(name: 'bug')
+enhancement = IssueCategory.find_or_create_by(name: 'enhancement')
+ux = IssueCategory.find_or_create_by(name: 'ux')
+ui = IssueCategory.find_or_create_by(name: 'ui')
+feature = IssueCategory.find_or_create_by(name: 'feature')
 
-IssueCategory.find_or_create_by(name: 'bug')
-IssueCategory.find_or_create_by(name: 'enhancement')
-IssueCategory.find_or_create_by(name: 'ux')
-IssueCategory.find_or_create_by(name: 'ui')
-IssueCategory.find_or_create_by(name: 'feature')
+product = Product.find_or_create_by(name: 'Frontend Mentor')
+
+issue = Issue.find_or_create_by(
+  product:,
+  title: 'Add tags for solutions',
+  detail: 'Easier to search for solutions based on a specific stack.',
+  issue_category: enhancement,
+  status: 'planned',
+  user:
+)
