@@ -6,7 +6,7 @@ RSpec.describe Comment, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:parent) }
-    it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:replies) }
   end
 
   describe 'validations' do
