@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_02_162547) do
+ActiveRecord::Schema.define(version: 2023_06_03_212205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2023_06_02_162547) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_issue_categories_on_name", unique: true
+  end
+
+  create_table "issue_upvotes", force: :cascade do |t|
+    t.bigint "issue_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["issue_id", "user_id"], name: "index_issue_upvotes_on_issue_id_and_user_id", unique: true
+    t.index ["issue_id"], name: "index_issue_upvotes_on_issue_id"
+    t.index ["user_id"], name: "index_issue_upvotes_on_user_id"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -104,6 +114,8 @@ ActiveRecord::Schema.define(version: 2023_06_02_162547) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "issue_upvotes", "issues"
+  add_foreign_key "issue_upvotes", "users"
   add_foreign_key "issues", "issue_categories"
   add_foreign_key "issues", "products"
   add_foreign_key "issues", "users"

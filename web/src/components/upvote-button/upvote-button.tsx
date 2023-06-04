@@ -3,11 +3,31 @@
 import { useState } from 'react'
 import { ChevronIconUp } from "@/icons"
 
-export default function UpvoteButton({}) {
-  const [selected, setSelected] = useState<boolean>(false)
+import type { UpvoteButtonProps } from './types'
+
+export default function UpvoteButton({ issueUuid, upvotes, initialActive = false }: UpvoteButtonProps) {
+  const [upvotesCount, setUpvotesCount] = useState<number>(upvotes)
+  const [selected, setSelected] = useState<boolean>(initialActive)
 
   const handleClick = () => {
-    setSelected(!selected)
+    const newSelected = !selected
+    setSelected(newSelected)
+
+    if (newSelected) {
+      setUpvotesCount(upvotesCount + 1)
+      upvoteIssue(issueUuid)
+    } else {
+      setUpvotesCount(upvotesCount - 1)
+      unvoteIssue(issueUuid)
+    }
+  }
+
+  const upvoteIssue = async (issueUuid: string) => {
+    await fetch('/api/issue_upvotes', { method: 'POST', body: JSON.stringify({ issueUuid }) })
+  }
+
+  const unvoteIssue = async (issueUuid: string) => {
+    await fetch('/api/issue_upvotes', { method: 'PUT', body: JSON.stringify({ issueUuid }) })
   }
 
   return (
@@ -22,7 +42,7 @@ export default function UpvoteButton({}) {
         <ChevronIconUp />
       </div>
 
-      99
+      { upvotesCount }
     </button>
   )
 }

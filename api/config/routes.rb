@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       resources :products, only: [:show], param: :slug do
         resources :issues, only: %i[index show], param: :uuid
       end
+
+      resources :issue_upvotes, only: %i[create destroy], param: :issue_uuid
     end
   end
 end

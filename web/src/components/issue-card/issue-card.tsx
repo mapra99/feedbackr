@@ -21,7 +21,7 @@ export default function IssueCard({ issue }: IssueCardProps) {
 
       <div className="flex justify-between items-center sm:order-1">
         <div className="sm:self-start">
-          <UpvoteButton />
+          <UpvoteButton issueUuid={issue.uuid} upvotes={issue.upvotes} initialActive={issue.alreadyUpvoted} />
         </div>
 
         <div className="sm:absolute sm:right-8">
