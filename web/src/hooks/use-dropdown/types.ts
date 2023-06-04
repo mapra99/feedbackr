@@ -1,7 +1,7 @@
 export interface DropdownListItem {
   id: string
   label: string
-  value: string
+  value: unknown
 }
 
 export interface UseDropdownParams {

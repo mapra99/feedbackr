@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_22_052630) do
+ActiveRecord::Schema.define(version: 2023_06_02_162547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "issue_categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_issue_categories_on_name", unique: true
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "detail", null: false
+    t.string "uuid", null: false
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "issue_category_id"
+    t.string "status", null: false
+    t.index ["issue_category_id"], name: "index_issues_on_issue_category_id"
+    t.index ["product_id"], name: "index_issues_on_product_id"
+    t.index ["user_id"], name: "index_issues_on_user_id"
+    t.index ["uuid"], name: "index_issues_on_uuid", unique: true
+  end
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
@@ -57,6 +80,14 @@ ActiveRecord::Schema.define(version: 2023_05_22_052630) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_products_on_slug", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -73,6 +104,9 @@ ActiveRecord::Schema.define(version: 2023_05_22_052630) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "issues", "issue_categories"
+  add_foreign_key "issues", "products"
+  add_foreign_key "issues", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
