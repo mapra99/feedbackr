@@ -1,4 +1,5 @@
 import CommentCard from '@/components/comment-card'
+import NewCommentForm from '@/components/new-comment-form'
 import type { CommentsSectionProps } from './types'
 
 export default function CommentsSection({ comments, totalCount }: CommentsSectionProps) {
@@ -17,6 +18,10 @@ export default function CommentsSection({ comments, totalCount }: CommentsSectio
             </div>
           )) }
         </div>
+      </div>
+
+      <div>
+        <NewCommentForm />
       </div>
     </div>
   )

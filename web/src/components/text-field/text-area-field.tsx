@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import { buildStyles } from './styles'
-import type { TextFieldProps } from './types'
+import type { TextAreaFieldProps } from './types'
 
-export default function TextField({ className, error, ...props }: TextFieldProps) {
+export default function TextAreaField({ className, error, ...props }: TextAreaFieldProps) {
   const [active, setActive] = useState<boolean>(false)
 
   return (
     <div className="flex flex-col gap-1">
-      <input
+      <textarea
         className={`
           ${buildStyles(active, error)}
           ${className}
