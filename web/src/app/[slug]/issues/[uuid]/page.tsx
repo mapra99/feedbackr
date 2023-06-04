@@ -19,7 +19,7 @@ export default async function IssuePage({ params } :IssuePageProps) {
   if (!issue) { return notFound() }
 
   return (
-    <div className="container p-6 flex flex-col gap-6">
+    <div className="container p-6 sm:py-14 sm:px-10 lg:px-6 flex flex-col gap-6 max-w-3xl mx-auto">
       <div className="flex justify-between items-center">
         <BackButton />
         <LinkButton href={`${params.slug}/issues/${params.uuid}/edit`} variant="secondary" className="px-4">

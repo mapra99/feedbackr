@@ -21,7 +21,8 @@ module.exports = {
       'periwinkle': '#CFD7FF',
       'blush': '#E84D70',
       'picton-blue': '#28A7ED',
-      'lavender': '#CDD2EE'
+      'lavender': '#CDD2EE',
+      'cool-gray': '#8C92B3'
     },
     fontFamily: {
       sans: ['Jost', 'sans-serif']

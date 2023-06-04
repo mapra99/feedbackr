@@ -3,15 +3,15 @@ class Comment < ApplicationRecord
 
   belongs_to :user
   belongs_to :parent, polymorphic: true
-  has_many :comments, as: :parent, dependent: :destroy
+  has_many :replies, class_name: 'Comment', as: :parent, dependent: :destroy
 
   validates :content, presence: true
 
   def comments_count
     total = 1
 
-    comments.each do |comment|
-      total += comment.comments_count
+    replies.each do |reply|
+      total += reply.comments_count
     end
 
     total

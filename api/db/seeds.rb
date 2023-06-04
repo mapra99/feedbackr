@@ -31,7 +31,7 @@ feature = IssueCategory.find_or_create_by(name: 'feature')
 
 product = Product.find_or_create_by(name: 'Frontend Mentor')
 
-Issue.find_or_create_by(
+issue = Issue.find_or_create_by(
   product:,
   title: 'Add tags for solutions',
   detail: 'Easier to search for solutions based on a specific stack.',
@@ -48,3 +48,8 @@ Issue.find_or_create_by(
   status: 'planned',
   user:
 )
+
+Comment.find_or_create_by(parent: issue, user:, content: "Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device’s dark mode turns on without the bright background it currently has.")
+comment = Comment.find_or_create_by(user:, parent: issue, content: "Second this! I do a lot of late night coding and reading. Adding a dark theme can be great for preventing eye strain and the headaches that result. It’s also quite a trend with modern apps and  apparently saves battery life.")
+comment.comments.find_or_create_by(user:, content: '@hummingbird1 While waiting for dark mode, there are browser extensions that will also do the job. Search for "dark theme” followed by your browser. There might be a need to turn off the extension for sites with naturally black backgrounds though.')
+comment.comments.find_or_create_by(user:, content: "@annev1990  Good point! Using any kind of style extension is great and can be highly customizable, like the ability to change contrast and brightness. I'd prefer not to use one of such extensions, however, for security and privacy reasons.")
