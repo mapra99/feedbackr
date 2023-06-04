@@ -1,3 +1,3 @@
-export interface NewCommentFormProps {
+export interface NewReplyFormProps {
   onSubmit: (content: string) => void
 }

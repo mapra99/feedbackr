@@ -35,7 +35,7 @@ export default function CommentsSection({ issueUuid, comments, totalCount }: Com
         <div>
           { comments.map((comment, index) => (
             <div key={comment.uuid}>
-              <CommentCard comment={comment} />
+              <CommentCard comment={comment} onReplyCreation={addComment} />
               { index !== comments.length - 1 && <hr className="my-6 sm:my-8 border-t border-cool-gray opacity-30" /> }
             </div>
           )) }
@@ -43,7 +43,7 @@ export default function CommentsSection({ issueUuid, comments, totalCount }: Com
       </div>
 
       <div>
-        <NewCommentForm issueUuid={issueUuid} onSubmit={addComment} />
+        <NewCommentForm onSubmit={(content) => addComment(content, 'Issue', issueUuid)} />
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ import type { NewCommentFormProps } from './types'
 
 const MAX_CHARACTERS_COUNT = 250
 
-export default function NewCommentForm({ issueUuid, onSubmit }: NewCommentFormProps) {
+export default function NewCommentForm({ onSubmit }: NewCommentFormProps) {
   const [content, setContent] = useState<string>('')
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -18,7 +18,7 @@ export default function NewCommentForm({ issueUuid, onSubmit }: NewCommentFormPr
 
   const handleSubmit = async () => {
     if (content.length > MAX_CHARACTERS_COUNT) return
-    await onSubmit(content, 'Issue', issueUuid)
+    await onSubmit(content)
   }
 
   const charactersLeft = MAX_CHARACTERS_COUNT - content.length

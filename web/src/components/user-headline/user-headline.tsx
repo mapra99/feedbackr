@@ -11,7 +11,7 @@ export default function UserHeadline({ user }: UserHeadlineProps) {
           { user.firstName } { user.lastName }
         </span>
 
-        <span className="font-sans text-xs sm:text-lg text-glaucous font-normal">
+        <span className="font-sans text-xs sm:text-lg text-glaucous !font-normal">
           @{ user.username }
         </span>
       </div>
