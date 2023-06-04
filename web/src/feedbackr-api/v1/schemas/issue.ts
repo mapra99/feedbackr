@@ -13,7 +13,8 @@ export const IssueSchema = z.object({
   updatedAt: z.string(),
   category: IssueCategorySchema,
   user: UserSchema,
-  comments: z.array(CommentSchema).optional()
+  comments: z.array(CommentSchema).optional(),
+  commentsCount: z.number()
 })
 
 export type Issue = z.infer<typeof IssueSchema>

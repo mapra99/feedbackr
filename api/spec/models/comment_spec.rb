@@ -24,4 +24,18 @@ RSpec.describe Comment, type: :model do
       expect(comment.uuid).to be_present
     end
   end
+
+  describe '#total_comments_count' do
+    let(:comment) { create(:comment) }
+
+    before do
+      child_comments = create_list(:comment, 2, parent: comment)
+      child_child_comment = create(:comment, parent: child_comments.first)
+      create(:comment, parent: child_child_comment)
+    end
+
+    it 'returns the total number of comments' do
+      expect(comment.comments_count).to eq(5)
+    end
+  end
 end

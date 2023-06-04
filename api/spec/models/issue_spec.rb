@@ -28,4 +28,18 @@ RSpec.describe Issue do
       expect(issue.uuid).to be_present
     end
   end
+
+  describe '#comments_count' do
+    let(:issue) { create(:issue) }
+
+    before do
+      comments = create_list(:comment, 2, parent: issue)
+      child_comment = create(:comment, parent: comments.first)
+      create(:comment, parent: child_comment)
+    end
+
+    it 'returns the total number of comments' do
+      expect(issue.comments_count).to eq(4)
+    end
+  end
 end

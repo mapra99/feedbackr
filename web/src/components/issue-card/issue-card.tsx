@@ -25,7 +25,7 @@ export default function IssueCard({ issue }: IssueCardProps) {
         </div>
 
         <div className="sm:absolute sm:right-8">
-          <CommentsCounter />
+          <CommentsCounter commentsCount={issue.commentsCount} />
         </div>
       </div>
     </div>

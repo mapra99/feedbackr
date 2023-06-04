@@ -16,4 +16,8 @@ class Issue < ApplicationRecord
   validates :title, presence: true
   validates :detail, presence: true
   validates :status, presence: true, inclusion: { in: STATUSES.values }
+
+  def comments_count
+    comments.map(&:comments_count).sum
+  end
 end
