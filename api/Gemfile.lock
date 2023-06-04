@@ -62,6 +62,7 @@ GEM
       zeitwerk (~> 2.3)
     ast (2.4.2)
     bcrypt (3.1.18)
+    blueprinter (0.25.3)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -79,7 +80,16 @@ GEM
     doorkeeper (5.6.6)
       railties (>= 5)
     erubi (1.12.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
+    faker (3.2.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
+    friendly_id (5.5.0)
+      activerecord (>= 4.0.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.13.0)
@@ -202,6 +212,8 @@ GEM
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
+    shoulda-matchers (5.3.0)
+      activesupport (>= 5.2.0)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -228,10 +240,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  blueprinter
   bootsnap (>= 1.4.4)
   byebug
   devise (~> 4.9.2)
   doorkeeper (~> 5.6.6)
+  factory_bot_rails
+  faker
+  friendly_id (~> 5.1)
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
@@ -239,6 +255,7 @@ DEPENDENCIES
   rspec-rails (~> 6.0.0)
   rubocop-rails
   rubocop-rspec
+  shoulda-matchers (~> 5.0)
   spring
   tzinfo-data
 

@@ -13,3 +13,38 @@ Doorkeeper::Application.find_or_create_by(
   uid: 'uid123',
   secret: 'supersecret'
 )
+
+user = User.find_or_initialize_by(
+  first_name: 'Rick',
+  last_name: 'Grimes',
+  username: 'rick-grimes',
+  email: 'rick@citadel.com'
+)
+
+user.update(password: 'password', password_confirmation: 'password')
+
+_bug = IssueCategory.find_or_create_by(name: 'bug')
+enhancement = IssueCategory.find_or_create_by(name: 'enhancement')
+_ux = IssueCategory.find_or_create_by(name: 'ux')
+_ui = IssueCategory.find_or_create_by(name: 'ui')
+feature = IssueCategory.find_or_create_by(name: 'feature')
+
+product = Product.find_or_create_by(name: 'Frontend Mentor')
+
+Issue.find_or_create_by(
+  product:,
+  title: 'Add tags for solutions',
+  detail: 'Easier to search for solutions based on a specific stack.',
+  issue_category: enhancement,
+  status: 'planned',
+  user:
+)
+
+Issue.find_or_create_by(
+  product:,
+  title: 'Add a dark theme option',
+  detail: 'It would help people with light sensitivities and who prefer dark mode.',
+  issue_category: feature,
+  status: 'planned',
+  user:
+)
