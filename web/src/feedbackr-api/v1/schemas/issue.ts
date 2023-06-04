@@ -2,6 +2,7 @@ import z from 'zod'
 
 import { IssueCategorySchema } from './issue-category'
 import { UserSchema } from './user'
+import { CommentSchema } from './comment'
 
 export const IssueSchema = z.object({
   uuid: z.string(),
@@ -11,7 +12,8 @@ export const IssueSchema = z.object({
   createdAt: z.string(),
   updatedAt: z.string(),
   category: IssueCategorySchema,
-  user: UserSchema
+  user: UserSchema,
+  comments: z.array(CommentSchema).optional()
 })
 
 export type Issue = z.infer<typeof IssueSchema>

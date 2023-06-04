@@ -7,11 +7,12 @@ import type { UseAuthParams } from "./types"
 
 export default async function useAuth({ authorize = true }: UseAuthParams) {
   const cookieStore = cookies()
-  const { result: currentUser } = await fetchCurrentUser(cookieStore.get('accessToken')?.value)
+  const accessToken = cookieStore.get('accessToken')?.value
+  const { result: currentUser } = await fetchCurrentUser(accessToken)
 
   if (authorize && !currentUser) {
     return { redirect: <Redirect to="/login" /> }
   } else {
-    return { currentUser }
+    return { currentUser, accessToken }
   }
 }
