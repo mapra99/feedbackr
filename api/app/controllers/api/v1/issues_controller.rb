@@ -18,7 +18,7 @@ module Api
       private
 
       def issue
-        @issue ||= Issue.includes(comments: [:user]).find_by(uuid: params[:uuid], product:)
+        @issue ||= Issue.includes(:comments, comments: %i[user replies]).find_by(uuid: params[:uuid], product:)
       end
 
       def product

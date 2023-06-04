@@ -7,7 +7,9 @@ module V1
     association :user, blueprint: UsersBlueprint
 
     view :extended do
-      association :comments, blueprint: CommentsBlueprint
+      association :comments, blueprint: CommentsBlueprint do |issue|
+        issue.comments.oldest_first
+      end
     end
   end
 end

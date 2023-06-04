@@ -7,6 +7,8 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true
 
+  scope :oldest_first, -> { order(created_at: :asc) }
+
   def comments_count
     total = 1
 

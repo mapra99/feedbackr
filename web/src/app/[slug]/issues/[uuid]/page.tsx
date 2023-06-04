@@ -33,7 +33,7 @@ export default async function IssuePage({ params } :IssuePageProps) {
 
       { issue.comments ? (
         <div>
-          <CommentsSection comments={issue.comments} totalCount={issue.commentsCount} />
+          <CommentsSection issueUuid={issue.uuid} comments={issue.comments} totalCount={issue.commentsCount} />
         </div>
       ) : null }
     </div>
