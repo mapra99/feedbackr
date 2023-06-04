@@ -1,5 +1,11 @@
 import { notFound } from 'next/navigation';
 import invariant from 'tiny-invariant'
+
+import { LinkButton } from '@/components/button'
+import BackButton from '@/components/back-button';
+import IssueCard from '@/components/issue-card';
+import CommentsSection from '@/components/comments-section'
+
 import useAuth from '@/hooks/use-auth'
 import { fetchIssue } from '@/feedbackr-api/v1/products/issues'
 import type { IssuePageProps } from './types'
@@ -13,8 +19,23 @@ export default async function IssuePage({ params } :IssuePageProps) {
   if (!issue) { return notFound() }
 
   return (
-    <h1>
-      { issue.title }
-    </h1>
+    <div className="container p-6 flex flex-col gap-6">
+      <div className="flex justify-between items-center">
+        <BackButton />
+        <LinkButton href={`${params.slug}/issues/${params.uuid}/edit`} variant="secondary" className="px-4">
+          Edit Feedback
+        </LinkButton>
+      </div>
+
+      <div>
+        <IssueCard issue={issue} />
+      </div>
+
+      { issue.comments ? (
+        <div>
+          <CommentsSection comments={issue.comments} totalCount={issue.commentsCount} />
+        </div>
+      ) : null }
+    </div>
   )
 }
