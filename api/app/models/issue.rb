@@ -11,6 +11,7 @@ class Issue < ApplicationRecord
   belongs_to :user
   belongs_to :product
   belongs_to :issue_category
+  has_many :comments, as: :parent, dependent: :destroy
 
   validates :title, presence: true
   validates :detail, presence: true

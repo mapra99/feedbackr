@@ -5,5 +5,9 @@ module V1
 
     association :issue_category, blueprint: IssueCategoriesBlueprint, name: :category
     association :user, blueprint: UsersBlueprint
+
+    view :extended do
+      association :comments, blueprint: CommentsBlueprint
+    end
   end
 end
