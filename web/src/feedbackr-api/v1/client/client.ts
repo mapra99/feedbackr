@@ -46,8 +46,9 @@ export async function sendRequest(
     }
   }
 
-  const data = await response.json();
-  const formattedData = camelizeKeys(data)
+
+  const data = await response.text();
+  const formattedData = data === '' ? null : camelizeKeys(JSON.parse(data))
 
   return {
     status: response.status,

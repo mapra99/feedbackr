@@ -18,6 +18,7 @@ class User < ApplicationRecord
 
   has_many :issues, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :issue_upvotes, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true

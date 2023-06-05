@@ -14,7 +14,9 @@ export const IssueSchema = z.object({
   category: IssueCategorySchema,
   user: UserSchema,
   comments: z.array(CommentSchema).optional(),
-  commentsCount: z.number()
+  commentsCount: z.number(),
+  upvotes: z.number(),
+  alreadyUpvoted: z.boolean()
 })
 
 export type Issue = z.infer<typeof IssueSchema>

@@ -13,5 +13,6 @@ RSpec.describe User, type: :model do
   describe 'associations' do
     it { is_expected.to have_many(:issues) }
     it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:issue_upvotes) }
   end
 end

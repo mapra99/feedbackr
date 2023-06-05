@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         resources :issues, only: %i[index show], param: :uuid
       end
       resources :comments, only: %i[create], param: :uuid
+      resources :issue_upvotes, only: %i[create destroy], param: :issue_uuid
     end
   end
 end
