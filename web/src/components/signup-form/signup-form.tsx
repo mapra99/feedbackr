@@ -31,7 +31,14 @@ export default function SignupForm() {
   }
 
   return (
-    <Form icon={<BotIcon />} onSubmit={handleSubmit}>
+    <Form
+      icon={
+        <div className="w-6 h-6">
+          <BotIcon />
+        </div>
+      }
+      onSubmit={handleSubmit}
+    >
       <h1 className="text-xl sm:text-3xl font-sans text-marian-blue w-full mt-5 sm:mt-3 mb-6 sm:mb-10">
         Sign Up
       </h1>

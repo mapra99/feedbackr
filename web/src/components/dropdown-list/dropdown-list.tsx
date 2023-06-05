@@ -13,13 +13,14 @@ export default function DropdownList({ items, selectedId, onSelect }: DropdownLi
   }
 
   return (
-    <div className="w-64 shadow-2xl rounded-md bg-white">
+    <div className="w-full shadow-2xl rounded-md bg-white">
       { items.map((item, index) => (
         <>
           <button
             key={item.id}
-            className="flex items-center justify-between px-6 py-3 w-full transition-all text-glaucous text-base font-sans hover:text-veronica active:opacity-80"
+            className="flex items-center justify-between px-6 py-3 w-full transition-all text-glaucous text-xs sm:text-base font-normal font-sans hover:text-veronica active:opacity-80"
             onClick={() => handleSelect(item.id)}
+            type="button"
           >
             { item.label }
 
