@@ -24,11 +24,7 @@ module Api
       end
 
       def parent
-        @parent ||= if comment_params[:parent_type] == 'Issue'
-                      Issue.find_by(uuid: comment_params[:parent_uuid])
-                    else
-                      Comment.find_by(uuid: comment_params[:parent_uuid])
-                    end
+        @parent ||= comment_params[:parent_type].constantize.find_by(uuid: comment_params[:parent_uuid])
       end
     end
   end
