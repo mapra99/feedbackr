@@ -15,6 +15,17 @@ module Api
         render json: ::V1::IssuesBlueprint.render(issue, current_user:, view: :extended)
       end
 
+      def create
+        creator = IssueCreator.new(issue_params, product, current_user)
+        creator.call
+
+        if creator.success?
+          render json: ::V1::IssuesBlueprint.render(creator.issue, current_user:)
+        else
+          render json: { errors: creator.errors }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def issue
@@ -23,6 +34,10 @@ module Api
 
       def product
         @product ||= Product.find_by(slug: params[:product_slug])
+      end
+
+      def issue_params
+        params.permit(:title, :detail, :category)
       end
     end
   end
