@@ -25,7 +25,6 @@ export default function useEnrichedContent(content: string, users: User[]) {
     startIndex = index + taggedUser.length;
   });
 
-  // Add the remaining text after the last tagged username
   if (startIndex < content.length) {
     enrichedContent.push(content.substring(startIndex));
   }
