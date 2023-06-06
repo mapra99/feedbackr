@@ -26,6 +26,10 @@ module Api
         end
       end
 
+      def update
+        
+      end
+
       private
 
       def issue
