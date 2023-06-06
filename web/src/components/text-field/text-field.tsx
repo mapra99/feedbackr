@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { buildStyles } from './styles'
 import type { TextFieldProps } from './types'
 
 export default function TextField({ className, error, ...props }: TextFieldProps) {
@@ -10,9 +11,7 @@ export default function TextField({ className, error, ...props }: TextFieldProps
     <div className="flex flex-col gap-1">
       <input
         className={`
-          font-sans text-base text-marian-blue rounded-md h-12 bg-ghost-white-light px-6 transition-all outline-none active:outline-none focus:outline-none
-          ${active ? 'border border-savoy-blue' : ''}
-          ${error ? 'border border-poppy' : ''}
+          ${buildStyles(active, error)}
           ${className}
         `}
         onFocus={() => setActive(true)}

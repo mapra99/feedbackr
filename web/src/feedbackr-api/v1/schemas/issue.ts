@@ -2,6 +2,7 @@ import z from 'zod'
 
 import { IssueCategorySchema } from './issue-category'
 import { UserSchema } from './user'
+import { CommentSchema } from './comment'
 
 export const IssueSchema = z.object({
   uuid: z.string(),
@@ -12,6 +13,8 @@ export const IssueSchema = z.object({
   updatedAt: z.string(),
   category: IssueCategorySchema,
   user: UserSchema,
+  comments: z.array(CommentSchema).optional(),
+  commentsCount: z.number(),
   upvotes: z.number(),
   alreadyUpvoted: z.boolean()
 })

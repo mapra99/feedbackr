@@ -9,7 +9,17 @@ module Api
         render json: ::V1::IssuesBlueprint.render(issues, current_user:)
       end
 
+      def show
+        return head :not_found if product.blank? || issue.blank?
+
+        render json: ::V1::IssuesBlueprint.render(issue, current_user:, view: :extended)
+      end
+
       private
+
+      def issue
+        @issue ||= Issue.includes(:comments, comments: %i[user replies]).find_by(uuid: params[:uuid], product:)
+      end
 
       def product
         @product ||= Product.find_by(slug: params[:product_slug])
