@@ -14,7 +14,7 @@ export default async function NewIssuePage({ params }: NewIssuePageProps) {
           <BackButton />
         </div>
 
-        <NewIssueForm />
+        <NewIssueForm productSlug={params.slug} />
       </div>
     </main>
   )

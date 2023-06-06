@@ -7,10 +7,10 @@ import TextField, { TextAreaField } from '@/components/text-field'
 import SelectField from '@/components/select-field';
 import { Button } from '@/components/button'
 import { PlusIcon } from "@/icons"
-import { LoginErrorsSchema } from '@/feedbackr-api/v1/auth/types'
+import { IssueErrorsSchema } from './types'
 
 import type { FormEvent } from 'react';
-import type { LoginErrors } from '@/feedbackr-api/v1/auth/types'
+import type { NewIssueFormProps } from './types'
 
 const ITEM_CATEGORIES = [
   { label: 'Feature', value: 'feature', id: 'feature' },
@@ -20,22 +20,24 @@ const ITEM_CATEGORIES = [
   { label: 'UX', value: 'ux', id: 'ux' },
 ]
 
-export default function NewIssueForm() {
-  const [errors, setErrors] = useState<LoginErrors | null>(null)
+export default function NewIssueForm({ productSlug }: NewIssueFormProps) {
+  const [errors, setErrors] = useState<string[] | null>(null)
   const router = useRouter();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
-    const response = await fetch('/api/login', { method: 'POST', body: formData })
+    formData.append('productSlug', productSlug)
+
+    const response = await fetch('/api/issues', { method: 'POST', body: formData })
 
     if (response.status === 422) {
       const result = await response.json()
-      setErrors(LoginErrorsSchema.parse(result))
+      setErrors(IssueErrorsSchema.parse(result).errors)
     } else if (response.status === 200) {
       setErrors(null)
-      router.push('/')
+      router.push(productSlug)
     }
   }
 
@@ -54,9 +56,9 @@ export default function NewIssueForm() {
         Create New Feedback
       </h1>
 
-      { errors?.errors.general ? (
+      { errors && errors.length > 0 ? (
         <ul className="flex flex-col w-full font-sans text-xs !font-normal sm:text-xs text-poppy bg-puppy/60 mb-6 sm:mb-10">
-          { errors?.errors.general.map((error, index) => (
+          { errors.map((error, index) => (
             <li key={index}>{error}</li>
           )) }
         </ul>
