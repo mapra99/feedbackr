@@ -1,6 +1,8 @@
 module Api
   module V1
     class IssuesController < BaseController
+      before_action :validate_identifiers!, only: %i[show update]
+
       def index
         return head :bad_request if params[:product_slug].blank?
         return head :not_found if product.blank?
@@ -27,13 +29,21 @@ module Api
       end
 
       def update
-        
+        updater = IssueUpdater.new(issue_params, issue, product, current_user)
+        updater.call
+
+        if updater.success?
+          render json: ::V1::IssuesBlueprint.render(updater.issue, current_user:)
+        else
+          render json: { errors: issue.errors }, status: :unprocessable_entity
+        end
+
       end
 
       private
 
       def issue
-        @issue ||= Issue.includes(:comments, comments: %i[user replies]).find_by(uuid: params[:uuid], product:)
+        @issue ||= product.issues.includes(:comments, comments: %i[user replies]).find_by(uuid: params[:uuid], product:)
       end
 
       def product
@@ -41,7 +51,11 @@ module Api
       end
 
       def issue_params
-        params.permit(:title, :detail, :category)
+        params.permit(:title, :detail, :category, :status)
+      end
+
+      def validate_identifiers!
+        return head :not_found if product.blank? || issue.blank?
       end
     end
   end
