@@ -7,7 +7,7 @@ import IssueCard from '@/components/issue-card';
 import CommentsSection from '@/components/comments-section'
 
 import useAuth from '@/hooks/use-auth'
-import { fetchIssue } from '@/feedbackr-api/v1/products/issues'
+import { fetchIssue } from '@/feedbackr-api/v1/issues'
 import type { IssuePageProps } from './types'
 
 export default async function IssuePage({ params } :IssuePageProps) {
@@ -15,7 +15,7 @@ export default async function IssuePage({ params } :IssuePageProps) {
   if (redirect) return redirect;
 
   invariant(accessToken, 'accessToken is required')
-  const { result: issue } = await fetchIssue({ uuid: params.uuid, productSlug: params.slug }, accessToken)
+  const { result: issue } = await fetchIssue(params.uuid, accessToken)
   if (!issue) { return notFound() }
 
   return (

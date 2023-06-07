@@ -1,11 +1,8 @@
-import z from 'zod'
 import { sendRequest } from "@/feedbackr-api/v1/client"
 import { IssueSchema } from '@/feedbackr-api/v1/schemas'
 
-import type { FetchIssuesListParams } from './types'
-
-export default async function fetchIssue({ uuid, productSlug }: FetchIssuesListParams, accessToken: string) {
-  const { status, data } = await sendRequest('GET', `/api/v1/products/${productSlug}/issues/${uuid}`, {}, { accessToken })
+export default async function fetchIssue(uuid: string, accessToken: string) {
+  const { status, data } = await sendRequest('GET', `/api/v1/issues/${uuid}`, {}, { accessToken })
 
   if (status === 200) {
     return { success: true, result: IssueSchema.parse(data) }

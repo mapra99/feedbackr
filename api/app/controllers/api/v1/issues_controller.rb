@@ -1,7 +1,7 @@
 module Api
   module V1
     class IssuesController < BaseController
-      before_action :validate_identifiers!, only: %i[show update]
+      before_action :validate_identifiers!, only: %i[show update destroy]
 
       def index
         return head :bad_request if params[:product_slug].blank?
@@ -12,7 +12,7 @@ module Api
       end
 
       def show
-        return head :not_found if product.blank? || issue.blank?
+        return head :not_found if issue.blank?
 
         render json: ::V1::IssuesBlueprint.render(issue, current_user:, view: :extended)
       end
@@ -29,7 +29,7 @@ module Api
       end
 
       def update
-        updater = IssueUpdater.new(issue_params, issue, product, current_user)
+        updater = IssueUpdater.new(issue_params, issue, current_user)
         updater.call
 
         if updater.success?
@@ -37,13 +37,17 @@ module Api
         else
           render json: { errors: issue.errors }, status: :unprocessable_entity
         end
+      end
 
+      def destroy
+        issue.destroy
+        head :no_content
       end
 
       private
 
       def issue
-        @issue ||= product.issues.includes(:comments, comments: %i[user replies]).find_by(uuid: params[:uuid], product:)
+        @issue ||= Issue.includes(:comments, comments: %i[user replies]).find_by(uuid: params[:uuid])
       end
 
       def product
@@ -55,7 +59,7 @@ module Api
       end
 
       def validate_identifiers!
-        return head :not_found if product.blank? || issue.blank?
+        return head :not_found if issue.blank?
       end
     end
   end
