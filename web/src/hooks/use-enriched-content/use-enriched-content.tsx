@@ -15,7 +15,7 @@ export default function useEnrichedContent(content: string, users: User[]) {
     
     const username = taggedUser.substring(1);
 
-    const user = users.find((user) => user.username === username)
+    const user = users.find((user) => user.username.toLowerCase() === username.toLowerCase())
     if (user) {
       enrichedContent.push(
         <UserTag user={user} />
