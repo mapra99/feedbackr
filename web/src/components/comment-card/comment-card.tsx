@@ -1,15 +1,19 @@
 'use client'
 
 import { useState } from 'react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import UserHeadline from '@/components/user-headline'
-import NewReplyForm from '../new-reply-form/new-reply-form'
+import NewReplyForm from '@/components/new-reply-form'
+import useEnrichedContent from '@/hooks/use-enriched-content'
 import type { CommentCardProps } from './types'
 
-export default function CommentCard({ comment, onReplyCreation }: CommentCardProps) {
+export default function CommentCard({ comment, onReplyCreation, users }: CommentCardProps) {
   const [replyFormVisible, setReplyFormVisible] = useState<boolean>(false)
+  const [parent] = useAutoAnimate()
+  const enrichedContent = useEnrichedContent(comment.content, users)
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" ref={parent}>
       <div className="flex items-center justify-between mb-4 gap-4">
         <UserHeadline user={comment.user} />
 
@@ -27,7 +31,7 @@ export default function CommentCard({ comment, onReplyCreation }: CommentCardPro
           ${comment.replies.length > 0 ? 'pb-4' : ''}
         `}
       >
-        { comment.content }
+        { enrichedContent }
       </p>
 
       { replyFormVisible ? (
@@ -41,7 +45,7 @@ export default function CommentCard({ comment, onReplyCreation }: CommentCardPro
       { comment.replies.length > 0 ? (
         <div className="pl-6 sm:ml-5 flex flex-col gap-6 border-l border-glaucous/10">
           { comment.replies.map((reply) => (
-            <CommentCard key={reply.uuid} comment={reply} onReplyCreation={onReplyCreation} />
+            <CommentCard key={reply.uuid} comment={reply} onReplyCreation={onReplyCreation} users={users} />
           ))}
         </div>
       ) : null}
