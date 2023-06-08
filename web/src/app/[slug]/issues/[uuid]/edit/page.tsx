@@ -17,7 +17,7 @@ export default async function EditIssuePage({ params }: EditIssuePageProps) {
     <main className="flex lg:items-center justify-center w-full min-h-screen">
       <div className="my-8 sm:my-14 mx-6 max-w-lg w-full">
         <div className="mb-14">
-          <BackButton />
+          <BackButton href={`${params.slug}/issues/${params.uuid}`} />
         </div>
 
         <EditIssueForm productSlug={params.slug} issue={issue} />

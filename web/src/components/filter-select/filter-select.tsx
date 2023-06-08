@@ -11,7 +11,7 @@ export default function FilterSelect({ items, selectedId, label }: FilterSelectP
   return (
     <div className="relative flex h-full">
       <button
-        className={`h-full flex bg-delft-blue rounded-xl text-ghost-white font-sans text-sm items-center`}
+        className={`h-full flex rounded-xl text-ghost-white font-sans text-sm items-center`}
         onClick={toggleList}
       >
         <span className={`${open ? 'opacity-80' : ''}`}>

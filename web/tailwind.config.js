@@ -22,7 +22,8 @@ module.exports = {
       'blush': '#E84D70',
       'picton-blue': '#28A7ED',
       'lavender': '#CDD2EE',
-      'cool-gray': '#8C92B3'
+      'cool-gray': '#8C92B3',
+      'black': '#000000'
     },
     fontFamily: {
       sans: ['Jost', 'sans-serif']

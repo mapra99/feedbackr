@@ -1,13 +1,13 @@
-'use client'
-
+import Link from 'next/link';
 import { PointerLeftIcon } from "@/icons"
+import { BackButtonProps } from "./types"
 
-export default function BackButton() {
+export default function BackButton({ href }: BackButtonProps) {
   return (
-    <button
+    <Link
       type="button"
       className="flex items-center gap-3"
-      onClick={() => window.history.back()}
+      href={href}
     >
       <div className="w-3 h-3 text-savoy-blue">
         <PointerLeftIcon />
@@ -16,6 +16,6 @@ export default function BackButton() {
       <span className="text-glaucous font-sans text-xs font-bold">
         Go Back
       </span>
-    </button>
+    </Link>
   )
 }

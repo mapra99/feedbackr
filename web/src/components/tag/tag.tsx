@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react';
+import type { TagProps } from './types'
 
-export default function Tag() {
+export default function Tag({ label }: TagProps) {
   const [selected, setSelected] = useState<boolean>(false);
 
   const handleClick = () => {
@@ -17,7 +18,7 @@ export default function Tag() {
       `}
       onClick={handleClick}
     >
-      Tag
+      { label }
     </button>
   )
 }

@@ -1,6 +1,7 @@
 import type { CategoryLabelProps } from './types'
 
 const LABEL_MAPPINGS = {
+  'all': 'All',
   'bug': 'Bug',
   'feature': 'Feature',
   'enhancement': 'Enhancement',
