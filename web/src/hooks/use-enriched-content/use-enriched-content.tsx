@@ -16,11 +16,13 @@ export default function useEnrichedContent(content: string, users: User[]) {
     const username = taggedUser.substring(1);
 
     const user = users.find((user) => user.username === username)
-    if (!user) return
-
-    enrichedContent.push(
-      <UserTag user={user} />
-    );
+    if (user) {
+      enrichedContent.push(
+        <UserTag user={user} />
+      );
+    } else {
+      enrichedContent.push(taggedUser)
+    }
 
     startIndex = index + taggedUser.length;
   });
