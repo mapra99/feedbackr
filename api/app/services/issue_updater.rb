@@ -1,10 +1,9 @@
 class IssueUpdater
   attr_reader :issue, :errors
 
-  def initialize(params, issue, product, user)
+  def initialize(params, issue, user)
     @params = params
     @issue = issue
-    @product = product
     @user = user
     @errors = []
   end
@@ -13,6 +12,7 @@ class IssueUpdater
     issue.update(params.slice(:title, :detail, :status))
 
     assign_category
+    return false unless success?
     return true if issue.save
 
     @errors = issue.errors.full_messages
@@ -25,7 +25,7 @@ class IssueUpdater
 
   private
 
-  attr_reader :params, :product, :user
+  attr_reader :params, :user
 
   def issue_category
     @issue_category ||= IssueCategory.find_by(name: params[:category])

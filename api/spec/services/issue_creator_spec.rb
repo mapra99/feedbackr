@@ -6,7 +6,7 @@ RSpec.describe IssueCreator do
   let(:params) do
     {
       title: 'title',
-      detail:
+      detail:,
       category:
     }
   end

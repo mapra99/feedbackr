@@ -1,10 +1,10 @@
 import { sendRequest } from "@/feedbackr-api/v1/client"
 import { IssueSchema } from "@/feedbackr-api/v1/schemas"
 import { ErrorResponseSchema } from './types'
-import type { CreateIssueParams } from './types'
+import type { UpdateIssueParams } from './types'
 
-export default async function createIssue(params: CreateIssueParams, accessToken: string) {
-  const { status, response, data } = await sendRequest('POST', '/api/v1/issues', { ...params }, { accessToken })
+export default async function updateIssue(params: UpdateIssueParams, accessToken: string) {
+  const { status, response, data } = await sendRequest('PUT', `/api/v1/issues/${params.issueUuid}`, { ...params }, { accessToken })
 
   if (status === 200) {
     return { success: true, result: IssueSchema.parse(data) }
