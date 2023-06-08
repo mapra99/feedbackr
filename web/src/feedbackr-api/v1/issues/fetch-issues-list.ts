@@ -3,7 +3,7 @@ import { sendRequest } from "@/feedbackr-api/v1/client"
 import { IssueSchema } from '@/feedbackr-api/v1/schemas'
 
 export default async function fetchIssuesList(productSlug: string, accessToken: string) {
-  const { status, data } = await sendRequest('GET', `/api/v1/products/${productSlug}/issues`, {}, { accessToken })
+  const { status, data } = await sendRequest('GET', `/api/v1/issues?product_slug=${productSlug}`, {}, { accessToken })
 
   if (status === 200) {
     return { success: true, result: z.array(IssueSchema).parse(data) }

@@ -1,9 +1,11 @@
 'use client'
 
 import FilterSelect from '@/components/filter-select'
-import { Button } from '@/components/button'
+import { LinkButton } from '@/components/button'
 import { BulbIcon } from '@/icons'
 import { useSmBreakpoint } from '@/hooks/use-breakpoints'
+
+import type { IssuesControlsProps } from './types'
 
 const SORT_OPTIONS = [
   { id: 'upvotes_desc', label: 'Most Upvotes', value: { field: 'upvotes', desc: true } },
@@ -12,7 +14,7 @@ const SORT_OPTIONS = [
   { id: 'comments_asc', label: 'Least Comments', value: { field: 'comments', desc: false } }
 ]
 
-export default function IssuesControls() {
+export default function IssuesControls({ issuesCount, productSlug }: IssuesControlsProps) {
   const mobile = !useSmBreakpoint()
 
   return (
@@ -24,7 +26,7 @@ export default function IssuesControls() {
           </div>
 
           <span className="font-sans text-xl">
-            6 Suggestions
+            { issuesCount } Suggestions
           </span>
         </div>
 
@@ -35,9 +37,12 @@ export default function IssuesControls() {
         />
       </div>
 
-      <Button variant="primary" className="!px-3 sm:!px-6 sm:h-12">
+      <LinkButton
+        variant="primary" className="!px-3 sm:!px-6 sm:h-12"
+        href={`/${productSlug}/issues/new`}
+      >
         + Add Feedback
-      </Button>
+      </LinkButton>
     </div>
   )
 }

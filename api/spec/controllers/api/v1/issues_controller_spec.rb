@@ -11,7 +11,7 @@ RSpec.describe Api::V1::IssuesController, type: :request do
       access_token = sign_in(user, 'passwd')
       create_list(:issue, 5, product:)
 
-      get "/api/v1/products/#{product_slug}/issues.json", headers: { 'Authorization' => "Bearer #{access_token}" }
+      get "/api/v1/issues.json?product_slug=#{product_slug}", headers: { 'Authorization' => "Bearer #{access_token}" }
     end
 
     it 'returns http success' do
@@ -33,7 +33,7 @@ RSpec.describe Api::V1::IssuesController, type: :request do
     before do
       access_token = sign_in(user, 'passwd')
       get(
-        "/api/v1/products/#{product.slug}/issues/#{issue.uuid}.json",
+        "/api/v1/issues/#{issue.uuid}.json",
         headers: { 'Authorization' => "Bearer #{access_token}" }
       )
     end
