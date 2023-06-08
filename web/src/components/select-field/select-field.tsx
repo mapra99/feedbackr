@@ -1,5 +1,6 @@
 'use client'
 
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 import DropdownList from "@/components/dropdown-list"
 import { ChevronIconUp } from "@/icons"
 import useDropdown from "@/hooks/use-dropdown"
@@ -8,9 +9,10 @@ import type { SelectFieldProps } from './types'
 
 export default function SelectField({ items, selectedId, name, id }: SelectFieldProps) {
   const { open, selectedItem, toggleList, selectItem } = useDropdown({ items, selectedId })
+  const [parent] = useAutoAnimate()
 
   return (
-    <div className="relative flex">
+    <div className="relative flex" ref={parent}>
       <input type="hidden" id={id} name={name} value={selectedItem?.id} />
       <button
         className={`
