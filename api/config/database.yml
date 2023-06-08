@@ -87,6 +87,7 @@ test:
 #
 production:
   <<: *default
-  database: feedbackr_api_production
-  username: feedbackr_api
-  password: <%= ENV['FEEDBACKR_API_DATABASE_PASSWORD'] %>
+  database: <%= Rails.application.credentials.db!.fetch(:name) %>
+  username: <%= Rails.application.credentials.db!.fetch(:username) %>
+  password: <%= Rails.application.credentials.db!.fetch(:password) %>
+  host: <%= Rails.application.credentials.db!.fetch(:host) %>
