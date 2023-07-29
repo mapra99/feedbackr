@@ -5,18 +5,27 @@
 # bin/dev/setup <development key>
 # Get the development key from someone on the team
 
+set -e
+
 echo "Setting up development environment..."
-echo "Step 1/4 - Building docker images..."
+echo "Step 1/5 - Building docker images..."
 docker compose build
 
-echo "Step 2/4 - Setting up environment variables..."
+echo "Step 2/5 - Setting up environment variables..."
 cp web/.env.example web/.env.local
-echo $1 > api/config/credentials/development.key
 
-echo "Step 3/4 - Setting up database..."
+echo "Step 3/5 - Setting up secrets..."
+if [ -z "$1" ]
+then
+  echo "No development key provided. Skipping..."
+else
+  echo $1 > api/config/credentials/development.key
+fi
+
+echo "Step 4/5 - Setting up database..."
 docker compose run api rails db:setup
 
-echo "Step 4/4 - Installing node dependencies..."
+echo "Step 5/5 - Installing node dependencies..."
 docker compose run web npm install --save-dev
 
 echo "Done! Run bin/dev/start to start the development environment."
