@@ -11,7 +11,7 @@ class Issue < ApplicationRecord
   belongs_to :user
   belongs_to :product
   belongs_to :issue_category
-  has_many :comments, as: :parent
+  has_many :comments, as: :parent, dependent: :destroy
   has_many :all_comments, class_name: 'Comment', dependent: :destroy
   has_many :issue_upvotes, dependent: :destroy
 
