@@ -1,3 +1,4 @@
+require 'byebug'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -52,6 +53,8 @@ Issue.find_or_create_by(
 # rubocop:disable Layout/LineLength
 Comment.find_or_create_by(parent: issue, user:, content: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device’s dark mode turns on without the bright background it currently has.')
 comment = Comment.find_or_create_by(user:, parent: issue, content: 'Second this! I do a lot of late night coding and reading. Adding a dark theme can be great for preventing eye strain and the headaches that result. It’s also quite a trend with modern apps and  apparently saves battery life.')
+
+byebug
 reply = comment.replies.find_or_create_by(user:, content: '@hummingbird1 While waiting for dark mode, there are browser extensions that will also do the job. Search for "dark theme” followed by your browser. There might be a need to turn off the extension for sites with naturally black backgrounds though.')
 reply.replies.find_or_create_by(user:, content: "@annev1990  Good point! Using any kind of style extension is great and can be highly customizable, like the ability to change contrast and brightness. I'd prefer not to use one of such extensions, however, for security and privacy reasons.")
 

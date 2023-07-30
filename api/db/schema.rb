@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_30_224607) do
+ActiveRecord::Schema.define(version: 2023_07_30_232502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2023_07_30_224607) do
     t.string "uuid", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "issue_id"
+    t.index ["issue_id"], name: "index_comments_on_issue_id"
     t.index ["parent_type", "parent_id"], name: "index_comments_on_parent"
     t.index ["user_id"], name: "index_comments_on_user_id"
     t.index ["uuid"], name: "index_comments_on_uuid", unique: true
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 2023_07_30_224607) do
     t.bigint "issue_category_id"
     t.string "status", null: false
     t.integer "upvotes_count", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
     t.index ["issue_category_id"], name: "index_issues_on_issue_category_id"
     t.index ["product_id"], name: "index_issues_on_product_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
@@ -128,6 +131,7 @@ ActiveRecord::Schema.define(version: 2023_07_30_224607) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "comments", "issues"
   add_foreign_key "comments", "users"
   add_foreign_key "issue_upvotes", "issues"
   add_foreign_key "issue_upvotes", "users"
