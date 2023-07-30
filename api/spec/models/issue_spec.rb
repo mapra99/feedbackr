@@ -44,20 +44,6 @@ RSpec.describe Issue do
     end
   end
 
-  describe '#upvotes' do
-    subject(:upvotes) { issue.upvotes }
-
-    let(:issue) { create(:issue) }
-
-    before do
-      create_list(:issue_upvote, 2, issue:)
-    end
-
-    it 'returns the number of upvotes' do
-      expect(upvotes).to eq(2)
-    end
-  end
-
   describe '#upvoted_by?' do
     subject(:upvoted_by?) { issue.upvoted_by?(user) }
 

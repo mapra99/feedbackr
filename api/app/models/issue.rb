@@ -22,10 +22,6 @@ class Issue < ApplicationRecord
     comments.map(&:comments_count).sum
   end
 
-  def upvotes
-    issue_upvotes.count
-  end
-
   def upvoted_by?(user)
     issue_upvotes.exists?(user_id: user.id)
   end
