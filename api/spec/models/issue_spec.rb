@@ -76,7 +76,20 @@ RSpec.describe Issue do
     let!(:issue_2) { create(:issue, upvotes_count: 10) }
 
     it 'returns issues sorted by upvotes desc' do
-      expect(sort_by_upvotes).to eq [issue_1, issue_2]
+      expect(sort_by_upvotes).to eq [issue_2, issue_1]
+    end
+  end
+
+  describe '.sort_by_comments' do
+    subject(:sort_by_comments) { described_class.sort_by_comments(direction) }
+
+    let(:direction) { :desc }
+
+    let!(:issue_1) { create(:issue, comments_count: 5) }
+    let!(:issue_2) { create(:issue, comments_count: 10) }
+
+    it 'returns issues sorted by comments desc' do
+      expect(sort_by_comments).to eq [issue_2, issue_1]
     end
   end
 end

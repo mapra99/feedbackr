@@ -7,9 +7,9 @@ class IssuesFeedBuilder
   end
 
   def call
-    @issues = Issue.includes(:issue_category, :user, :issue_upvotes).latest_first
+    @issues = Issue.includes(:issue_category, :user, :issue_upvotes)
     @issues = filtered_by_product if product.present?
-    @issues = sorted if sort_params.present?
+    @issues = sorted
 
     issues
   end
@@ -21,13 +21,15 @@ class IssuesFeedBuilder
   end
 
   def sorted
-    byebug
-    if sort_params[:sort_by] == 'upvotes'
-      issues.sort_by_upvotes(sort_params[:sort_direction] == 'desc' ? :desc : :asc)
-    elsif sort_params[:sort_by] == 'comments'
-      issues.sort_by_comments(sort_params[:sort_direction] == 'desc' ? :desc : :asc)
+    return issues.latest_first if sort_params.blank?
+
+    case sort_params[:sort_by]
+    when 'upvotes'
+      issues.sort_by_upvotes(sort_params[:sort_direction])
+    when 'comments'
+      issues.sort_by_comments(sort_params[:sort_direction])
     else
-      raise StandardError, 'Invalid sort_by param'
+      raise StandardError, 'Invalid sort params'
     end
   end
 end
