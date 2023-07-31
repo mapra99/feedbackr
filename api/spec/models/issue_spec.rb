@@ -16,6 +16,7 @@ RSpec.describe Issue do
     it { is_expected.to belong_to(:issue_category) }
     it { is_expected.to have_many(:comments) }
     it { is_expected.to have_many(:issue_upvotes) }
+    it { is_expected.to have_many(:all_comments).class_name('Comment') }
   end
 
   describe 'uuid' do
