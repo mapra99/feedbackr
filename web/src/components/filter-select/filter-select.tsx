@@ -5,8 +5,8 @@ import { ChevronIconUp } from '@/icons';
 import useDropdown from '@/hooks/use-dropdown';
 import type { FilterSelectProps } from './types';
 
-export default function FilterSelect({ items, selectedId, label }: FilterSelectProps) {
-  const { open, selectedItem, toggleList, selectItem } = useDropdown({ items, selectedId  })
+export default function FilterSelect({ items, selectedId, label, onSelect }: FilterSelectProps) {
+  const { open, selectedItem, toggleList, selectItem } = useDropdown({ items, selectedId, onSelect })
 
   return (
     <div className="relative flex h-full">

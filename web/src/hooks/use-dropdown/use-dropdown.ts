@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { UseDropdownParams } from './types'
 
-export default function useDropdown({ selectedId, items }: UseDropdownParams) {
+export default function useDropdown({ selectedId, items, onSelect }: UseDropdownParams) {
   const [selection, setSelection] = useState<string | undefined>(selectedId)
   const [open, setOpen] = useState<boolean>(false)
 
@@ -10,6 +10,7 @@ export default function useDropdown({ selectedId, items }: UseDropdownParams) {
   const selectItem = (id: string) => {
     setSelection(id)
     setOpen(false)
+    if (onSelect) onSelect(id)
   }
 
   const toggleList = () => { setOpen(!open) }
