@@ -7,7 +7,9 @@ module V1
       issue.upvoted_by?(options[:current_user])
     end
 
-    field :upvotes(&:upvotes_count)
+    field :upvotes do |issue|
+      issue.upvotes_count
+    end
 
     association :issue_category, blueprint: IssueCategoriesBlueprint, name: :category
     association :user, blueprint: UsersBlueprint
