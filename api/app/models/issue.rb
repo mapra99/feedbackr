@@ -19,6 +19,10 @@ class Issue < ApplicationRecord
   validates :detail, presence: true
   validates :status, presence: true, inclusion: { in: STATUSES.values }
 
+  scope :latest_first, -> { order(created_at: :desc) }
+  scope :sort_by_upvotes, -> (direction) { order(upvotes_count: direction) }
+  scope :sort_by_comments, -> (direction) { order(comments_count: direction) }
+
   def upvoted_by?(user)
     issue_upvotes.exists?(user_id: user.id)
   end
