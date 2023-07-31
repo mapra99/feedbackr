@@ -59,11 +59,15 @@ RSpec.describe Issue do
   describe '.latest_first' do
     subject(:latest_first) { described_class.latest_first }
 
-    let!(:issue_1) { create(:issue, created_at: 1.day.ago) }
-    let!(:issue_2) { create(:issue, created_at: 2.days.ago) }
+    let(:now) { Time.zone.now }
+
+    before do
+      create(:issue, created_at: now - 1.day)
+      create(:issue, created_at: now - 2.days)
+    end
 
     it 'returns issues sorted by created_at desc' do
-      expect(latest_first).to eq [issue_1, issue_2]
+      expect(latest_first).to eq [described_class.first, described_class.last]
     end
   end
 
@@ -72,11 +76,13 @@ RSpec.describe Issue do
 
     let(:direction) { :desc }
 
-    let!(:issue_1) { create(:issue, upvotes_count: 5) }
-    let!(:issue_2) { create(:issue, upvotes_count: 10) }
+    before do
+      create(:issue, upvotes_count: 5)
+      create(:issue, upvotes_count: 10)
+    end
 
     it 'returns issues sorted by upvotes desc' do
-      expect(sort_by_upvotes).to eq [issue_2, issue_1]
+      expect(sort_by_upvotes.pluck(:upvotes_count)).to eq [10, 5]
     end
   end
 
@@ -85,11 +91,13 @@ RSpec.describe Issue do
 
     let(:direction) { :desc }
 
-    let!(:issue_1) { create(:issue, comments_count: 5) }
-    let!(:issue_2) { create(:issue, comments_count: 10) }
+    before do
+      create(:issue, comments_count: 5)
+      create(:issue, comments_count: 10)
+    end
 
     it 'returns issues sorted by comments desc' do
-      expect(sort_by_comments).to eq [issue_2, issue_1]
+      expect(sort_by_comments.pluck(:comments_count)).to eq [10, 5]
     end
   end
 end

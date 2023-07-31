@@ -9,8 +9,8 @@ RSpec.describe IssuesFeedBuilder do
     subject(:result) { service.call }
 
     before do
-      create(:issue, upvotes_count: 10, comments_count: 5, product: product)
-      create(:issue, upvotes_count: 5, comments_count: 10, product: product)
+      create(:issue, upvotes_count: 10, comments_count: 5, product:)
+      create(:issue, upvotes_count: 5, comments_count: 10, product:)
     end
 
     context 'when sort params are not present' do
