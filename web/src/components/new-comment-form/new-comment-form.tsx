@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { TextAreaField } from "../text-field"
 import { Button } from "@/components/button"
 
-import type { ChangeEvent } from 'react'
+import type { ChangeEvent, FormEvent } from 'react'
 import type { NewCommentFormProps } from './types'
 
 const MAX_CHARACTERS_COUNT = 250
@@ -16,7 +16,9 @@ export default function NewCommentForm({ onSubmit }: NewCommentFormProps) {
     setContent(event.target.value)
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     if (content.length > MAX_CHARACTERS_COUNT) return
     await onSubmit(content)
   }
