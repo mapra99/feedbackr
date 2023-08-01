@@ -15,9 +15,14 @@ echo "Step 2/5 - Setting up environment variables..."
 cp web/.env.example web/.env.local
 
 echo "Step 3/5 - Setting up secrets..."
-if [ -z "$1" ]
-then
-  echo "No development key provided. Skipping..."
+
+if [ -z "$1" ]; then
+  if test -f api/config/credentials/development.key; then
+    echo "No development key provided. Skipping..."
+  else
+    echo "No development key provided. A key is required to run the development environment."
+    exit 1
+  fi
 else
   echo $1 > api/config/credentials/development.key
 fi
