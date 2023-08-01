@@ -6,6 +6,7 @@ RSpec.describe Comment, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:parent) }
+    it { is_expected.to belong_to(:issue).optional }
     it { is_expected.to have_many(:replies) }
   end
 
@@ -25,17 +26,29 @@ RSpec.describe Comment, type: :model do
     end
   end
 
-  describe '#total_comments_count' do
-    let(:comment) { create(:comment) }
+  describe 'issue callback' do
+    subject(:comment) { build(:comment, parent:) }
+
+    let(:original_issue) { create(:issue) }
 
     before do
-      child_comments = create_list(:comment, 2, parent: comment)
-      child_child_comment = create(:comment, parent: child_comments.first)
-      create(:comment, parent: child_child_comment)
+      comment.save!
     end
 
-    it 'returns the total number of comments' do
-      expect(comment.comments_count).to eq(5)
+    describe 'when parent is another comment' do
+      let(:parent) { create(:comment, parent: original_issue) }
+
+      it "sets the issue to the parent comment's issue" do
+        expect(comment.issue).to eq(original_issue)
+      end
+    end
+
+    describe 'when parent is the original issue' do
+      let(:parent) { original_issue }
+
+      it 'sets the issue to the original issue' do
+        expect(comment.issue).to eq(original_issue)
+      end
     end
   end
 end

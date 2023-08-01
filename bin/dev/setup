@@ -12,6 +12,7 @@ docker compose build
 echo "Step 2/4 - Setting up environment variables..."
 cp web/.env.example web/.env.local
 echo $1 > api/config/credentials/development.key
+echo $1 > api/config/credentials/test.key
 
 echo "Step 3/4 - Setting up database..."
 docker compose run api rails db:setup

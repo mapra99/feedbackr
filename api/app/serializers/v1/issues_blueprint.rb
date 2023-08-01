@@ -1,10 +1,14 @@
 module V1
   class IssuesBlueprint < Blueprinter::Base
     identifier :uuid
-    fields :title, :detail, :status, :upvotes, :created_at, :updated_at, :comments_count
+    fields :title, :detail, :status, :created_at, :updated_at, :comments_count
 
     field :already_upvoted do |issue, options|
       issue.upvoted_by?(options[:current_user])
+    end
+
+    field :upvotes do |issue|
+      issue.upvotes_count
     end
 
     association :issue_category, blueprint: IssueCategoriesBlueprint, name: :category

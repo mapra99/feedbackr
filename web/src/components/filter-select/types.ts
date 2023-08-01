@@ -4,4 +4,5 @@ export interface FilterSelectProps {
   label: string
   items: DropdownListItem[];
   selectedId?: string;
+  onSelect?: (id: string) => void
 }

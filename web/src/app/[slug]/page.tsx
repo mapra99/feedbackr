@@ -7,7 +7,7 @@ import IssuesList from '@/components/issues-list';
 import { fetchIssuesList } from '@/feedbackr-api/v1/issues';
 import type { ProductPageProps } from './types'
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params, searchParams }: ProductPageProps) {
   const { redirect, accessToken } = await useAuth({ authorize: true })
   if (redirect) return redirect
   invariant(accessToken, 'access token not found')
@@ -15,8 +15,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const { result: product } = await fetchProduct(params.slug, accessToken)
   if (!product) { notFound() }
 
-  const { result: issues } = await fetchIssuesList(params.slug, accessToken)
+  const { sort_by = 'upvotes', sort_direction = 'desc' } = searchParams
+  const { result: issues } = await fetchIssuesList(params.slug, accessToken, { sort_by, sort_direction })
   invariant(issues, 'issues could not be loaded')
+
 
   return (
     <div className="w-full flex flex-col sm:pt-14 sm:px-10 lg:pt-24 lg:flex-row lg:gap-8 max-w-7xl mx-auto">
@@ -24,7 +26,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <ProductMenu product={product} />
       </div>
       <div className="lg:flex-1">
-        <IssuesList issues={issues} productSlug={params.slug} />
+        <IssuesList issues={issues} productSlug={params.slug} sortParams={{ sort_by, sort_direction }} />
       </div>
     </div>
   )
