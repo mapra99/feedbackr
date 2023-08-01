@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type MouseEvent } from 'react'
 import { ChevronIconUp } from "@/icons"
 
 import type { UpvoteButtonProps } from './types'
@@ -9,7 +9,10 @@ export default function UpvoteButton({ issueUuid, upvotes, initialActive = false
   const [upvotesCount, setUpvotesCount] = useState<number>(upvotes)
   const [selected, setSelected] = useState<boolean>(initialActive)
 
-  const handleClick = () => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    event.preventDefault();
+
     const newSelected = !selected
     setSelected(newSelected)
 
@@ -37,6 +40,7 @@ export default function UpvoteButton({ issueUuid, upvotes, initialActive = false
         ${selected ? 'bg-savoy-blue text-white hover:opacity-80' : 'text-marian-blue bg-ghost-white hover:bg-periwinkle'}
       `}
       onClick={handleClick}
+      type="button"
     >
       <div className={`w-3 ${selected ? 'text-white' : 'text-savoy-blue'}`}>
         <ChevronIconUp />

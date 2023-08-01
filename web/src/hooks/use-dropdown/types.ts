@@ -7,4 +7,5 @@ export interface DropdownListItem {
 export interface UseDropdownParams {
   items: DropdownListItem[];
   selectedId?: string;
+  onSelect?: (id: string) => void
 }

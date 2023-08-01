@@ -7,7 +7,7 @@ module Api
         return head :bad_request if params[:product_slug].blank?
         return head :not_found if product.blank?
 
-        issues = Issue.includes(:issue_category, :user, :issue_upvotes).where(product:)
+        issues = IssuesFeedBuilder.new(product:, sort_params:).call
         render json: ::V1::IssuesBlueprint.render(issues, current_user:)
       end
 
@@ -60,6 +60,10 @@ module Api
 
       def validate_identifiers!
         return head :not_found if issue.blank?
+      end
+
+      def sort_params
+        params.permit(:sort_by, :sort_direction)
       end
     end
   end

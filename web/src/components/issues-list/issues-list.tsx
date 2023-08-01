@@ -4,10 +4,10 @@ import IssuesControls from '@/components/issues-controls'
 import NoIssuesBanner from '@/components/no-issues-banner'
 import type { IssuesListProps } from './types'
 
-export default function IssuesList({ issues, productSlug }: IssuesListProps) {
+export default function IssuesList({ issues, productSlug, sortParams }: IssuesListProps) {
   return (
     <div>
-      <IssuesControls issuesCount={issues.length} productSlug={productSlug} />
+      <IssuesControls issuesCount={issues.length} productSlug={productSlug} sortParams={sortParams} />
       { issues.length > 0 ? (
         <div className="mt-8 mx-6 sm:my-6 sm:mx-0 flex flex-col gap-4 lg:gap-5">
           { issues.map(issue => (

@@ -25,6 +25,7 @@ if [ -z "$1" ]; then
   fi
 else
   echo $1 > api/config/credentials/development.key
+  echo $1 > api/config/credentials/test.key
 fi
 
 echo "Step 4/5 - Setting up database..."
