@@ -3,8 +3,9 @@
 import FilterSelect from '@/components/filter-select'
 import { LinkButton } from '@/components/button'
 import { BulbIcon } from '@/icons'
-import { useSmBreakpoint } from '@/hooks/use-breakpoints'
+import { useMdBreakpoint } from '@/hooks/use-breakpoints'
 import { useRouter } from 'next/navigation'
+import updateCurrentPath from '@/utils/update-current-path'
 
 
 import type { IssuesControlsProps } from './types'
@@ -17,7 +18,7 @@ const SORT_OPTIONS = [
 ]
 
 export default function IssuesControls({ issuesCount, productSlug, sortParams }: IssuesControlsProps) {
-  const mobile = !useSmBreakpoint()
+  const mobile = !useMdBreakpoint()
   const router = useRouter()
 
   const handleFilterSelect = (selectedId: string) => {
@@ -25,14 +26,15 @@ export default function IssuesControls({ issuesCount, productSlug, sortParams }:
     if (!selectedOption) return
 
     const { field, desc } = selectedOption.value
-    router.push(`/${productSlug}?sort_by=${field}&sort_direction=${desc ? 'desc' : 'asc'}`)
+    const newPath = updateCurrentPath({sort_by: field, sort_direction: desc ? 'desc' : 'asc'})
+    router.push(newPath)
   }
 
   const { sort_by, sort_direction } = sortParams
   const sortOption = SORT_OPTIONS.find(option => option.value.field === sort_by && option.value.desc === (sort_direction === 'desc'))
 
   return (
-    <div className="w-full bg-delft-blue h-16 sm:h-20 px-6 text-white flex items-center justify-between sm:rounded-xl">
+    <div className="w-full bg-delft-blue h-16 sm:h-20 px-6 text-white flex items-center justify-between md:rounded-xl">
       <div className="flex gap-8 items-center">
         <div className={`${mobile ? 'hidden' : 'flex'} items-center gap-3`}>
           <div className="w-6 h-6 text-white">

@@ -2,19 +2,26 @@
 
 import ProductCard from '@/components/product-card'
 import MobileProductCard from "@/components/mobile-product-card"
-import { useSmBreakpoint } from "@/hooks/use-breakpoints"
+import CategoriesFilter from '@/components/categories-filter'
+import { useMdBreakpoint } from "@/hooks/use-breakpoints"
 
 import type { ProductMenuProps } from './types'
 
-export default function ProductMenu({ product }: ProductMenuProps) {
-  const mobile = !useSmBreakpoint()
+export default function ProductMenu({ product, filterParams }: ProductMenuProps) {
+  const mobile = !useMdBreakpoint()
 
   return (
     <div>
       { mobile ? (
-        <MobileProductCard product={product} />
+        <MobileProductCard
+          product={product}
+          filterParams={filterParams}
+        />
       ) : (
-        <ProductCard product={product} />
+        <div className="flex lg:flex-col gap-3 lg:gap-6">
+          <ProductCard product={product} />
+          <CategoriesFilter filterParams={filterParams} />
+        </div>
       )}
     </div>
   )

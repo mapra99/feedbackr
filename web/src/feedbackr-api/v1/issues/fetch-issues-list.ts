@@ -5,11 +5,13 @@ import { IssueSchema } from '@/feedbackr-api/v1/schemas'
 export default async function fetchIssuesList(
   productSlug: string,
   accessToken: string,
-  searchParams?: { sort_by?: string, sort_direction?: string }
+  searchParams?: { sort_by?: string, sort_direction?: string },
+  filterParams?: { category?: string }
 ) {
   let params = `product_slug=${productSlug}`
   if (searchParams?.sort_by) params += `&sort_by=${searchParams.sort_by}`
   if (searchParams?.sort_direction) params += `&sort_direction=${searchParams.sort_direction}`
+  if (filterParams?.category) params += `&category=${filterParams.category}`
 
   const { status, data } = await sendRequest('GET', `/api/v1/issues?${params}`, {}, { accessToken })
 
