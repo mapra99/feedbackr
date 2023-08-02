@@ -16,14 +16,15 @@ export default async function ProductPage({ params, searchParams }: ProductPageP
   if (!product) { notFound() }
 
   const { sort_by = 'upvotes', sort_direction = 'desc' } = searchParams
-  const { result: issues } = await fetchIssuesList(params.slug, accessToken, { sort_by, sort_direction })
+  const { category } = searchParams
+  const { result: issues } = await fetchIssuesList(params.slug, accessToken, { sort_by, sort_direction }, { category })
   invariant(issues, 'issues could not be loaded')
 
 
   return (
-    <div className="w-full flex flex-col sm:pt-14 sm:px-10 lg:pt-24 lg:flex-row lg:gap-8 max-w-7xl mx-auto">
-      <div className="sm:mb-10">
-        <ProductMenu product={product} />
+    <div className="w-full flex flex-col md:pt-14 md:px-10 lg:pt-24 lg:flex-row lg:gap-8 max-w-7xl mx-auto">
+      <div className="md:mb-10">
+        <ProductMenu product={product} filterParams={{ category }} />
       </div>
       <div className="lg:flex-1">
         <IssuesList issues={issues} productSlug={params.slug} sortParams={{ sort_by, sort_direction }} />

@@ -1,9 +1,12 @@
 import CategoryLabel from '@/components/category-label'
 import CommentsCounter from '@/components/comments-counter'
 import UpvoteButton from '@/components/upvote-button'
+import ISSUE_CATEGORY_LABELS from '@/constants/issue-category-labels'
 import type { IssueCardProps } from './types'
 
 export default function IssueCard({ issue }: IssueCardProps) {
+  const categoryLabel = ISSUE_CATEGORY_LABELS.find((category) => category.name === issue.category.name)?.label
+
   return (
     <div className="bg-white rounded-xl p-6 sm:py-7 sm:pl-8 sm:pr-20 text-marian-blue flex flex-col sm:flex-row sm:relative sm:gap-10">
       <div className="sm:order-2">
@@ -14,9 +17,11 @@ export default function IssueCard({ issue }: IssueCardProps) {
           { issue.detail }
         </p>
 
-        <div className="mb-4 sm:mb-0">
-          <CategoryLabel label={issue.category.name} />
-        </div>
+        { categoryLabel ? (
+          <div className="mb-4 sm:mb-0">
+            <CategoryLabel label={categoryLabel} />
+          </div>
+        ) : null}
       </div>
 
       <div className="flex justify-between items-center sm:order-1">

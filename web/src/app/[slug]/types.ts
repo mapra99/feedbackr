@@ -7,5 +7,6 @@ export interface ProductPageProps {
   searchParams: {
     sort_by?: string
     sort_direction?: string
+    category?: string
   }
 }
