@@ -39,7 +39,7 @@ export default function CategoriesFilter({ filterParams }: CategoriesFilterProps
   }
 
   return (
-    <div className="flex-1 lg:flex-auto lg:w-64 h-44 lg:h-auto flex flex-wrap items-center rounded-xl gap-x-2 gap-y-4 bg-white p-6">
+    <div className="flex-1 lg:flex-auto lg:w-64 min-h-44 lg:h-auto flex flex-wrap items-center rounded-xl gap-x-2 gap-y-4 bg-white p-6">
       {
         FILTER_OPTIONS.map((option) => (
           <CategoryLabel

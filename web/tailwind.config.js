@@ -11,6 +11,7 @@ module.exports = {
       'savoy-blue': '#4661E6',
       'delft-blue': '#373F68',
       'white': '#FFFFFF',
+      'black': '#000000',
       'ghost-white': '#F2F4FF',
       'ghost-white-light': '#F7F8FD',
       'marian-blue': '#3A4374',

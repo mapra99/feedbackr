@@ -13,7 +13,10 @@ export default function ProductMenu({ product, filterParams }: ProductMenuProps)
   return (
     <div>
       { mobile ? (
-        <MobileProductCard product={product} />
+        <MobileProductCard
+          product={product}
+          filterParams={filterParams}
+        />
       ) : (
         <div className="flex lg:flex-col gap-3 lg:gap-6">
           <ProductCard product={product} />
