@@ -7,7 +7,7 @@ import MobileDrawer from '@/components/mobile-drawer'
 
 import type { MobileProductCardProps } from './types'
 
-export default function MobileProductCard({ product, filterParams }: MobileProductCardProps) {
+export default function MobileProductCard({ product, filterParams, groupedIssues }: MobileProductCardProps) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [parent] = useAutoAnimate()
 
@@ -41,7 +41,7 @@ export default function MobileProductCard({ product, filterParams }: MobileProdu
       </nav>
 
       { drawerOpen ? (
-        <MobileDrawer filterParams={filterParams} />
+        <MobileDrawer filterParams={filterParams} groupedIssues={groupedIssues} />
       ) : null}
     </div>
   )
