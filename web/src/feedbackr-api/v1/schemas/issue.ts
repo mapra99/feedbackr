@@ -4,11 +4,15 @@ import { IssueCategorySchema } from './issue-category'
 import { UserSchema } from './user'
 import { CommentSchema } from './comment'
 
+export const IssueStatusSchema = z.enum(['suggestion', 'planned', 'in_progress', 'live'])
+
+export type IssueStatus = z.infer<typeof IssueStatusSchema>
+
 export const IssueSchema = z.object({
   uuid: z.string(),
   title: z.string(),
   detail: z.string(),
-  status: z.enum(['suggestion', 'planned', 'in_progress', 'live']),
+  status: IssueStatusSchema,
   createdAt: z.string(),
   updatedAt: z.string(),
   category: IssueCategorySchema,
