@@ -21,7 +21,7 @@ export default async function ProductRoadmapPage({ params }: ProductRoadmapPageP
   const groupedIssues = groupIssuesByStatus(issues)
 
   return (
-    <div className="w-full flex flex-col md:pt-14 md:px-10 md:gap-8 lg:gap-12 lg:pt-24 max-w-7xl mx-auto">
+    <div className="w-full flex flex-col md:pt-14 md:px-10 md:gap-8 lg:gap-12 lg:pt-20 max-w-7xl mx-auto">
       <div className="md:mb-10">
         <RoadmapHeader productSlug={params.slug} />
       </div>
