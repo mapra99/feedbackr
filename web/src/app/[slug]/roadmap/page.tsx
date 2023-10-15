@@ -5,6 +5,7 @@ import RoadmapHeader from '@/components/roadmap-header'
 import { fetchProduct } from '@/feedbackr-api/v1/products';
 import { fetchIssuesList } from '@/feedbackr-api/v1/issues';
 import { groupIssuesByStatus } from '@/utils/issues';
+import IssuesKanban from '@/components/issues-kanban';
 import type { ProductRoadmapPageProps } from './types'
 
 export default async function ProductRoadmapPage({ params }: ProductRoadmapPageProps) {
@@ -26,6 +27,7 @@ export default async function ProductRoadmapPage({ params }: ProductRoadmapPageP
         <RoadmapHeader productSlug={params.slug} />
       </div>
       <div className="lg:flex-1">
+        <IssuesKanban groupedIssues={groupedIssues} />
       </div>
     </div>
   )
