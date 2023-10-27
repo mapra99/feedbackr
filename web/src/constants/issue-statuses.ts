@@ -31,7 +31,7 @@ export const LABEL_MAPPING = {
 }
 
 export const DESCRIPTION_MAPPING = {
-  suggestion: 'Open suggestions that need to be triaged',
+  suggestion: 'Ideas that need to be triaged',
   planned: 'Ideas prioritized for research',
   in_progress: 'Currently being developed',
   live: 'Released features'

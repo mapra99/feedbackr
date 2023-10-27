@@ -12,16 +12,16 @@ export default function KanbanElement({ issue }: KanbanElementProps) {
   invariant(categoryLabel, `Category label not found for category name: ${issue.category.name}`)
 
   return (
-    <div className="flex flex-col gap-4 relative p-6 rounded-xl bg-white">
+    <div className="flex flex-col gap-4 relative p-6 md:px-5 lg:p-8 rounded-xl bg-white">
       <div className={`absolute w-full left-0 top-0 h-1.5 rounded-tl-xl rounded-tr-xl ${BG_COLOR_MAPPING[issue.status]}`} />
 
       <StatusLabel status={issue.status} size="small" />
 
       <div className="flex flex-col gap-2">
-        <h3 className="font-sans font-bold text-xs text-marian-blue">
+        <h3 className="font-sans font-bold text-xs lg:text-xl text-marian-blue">
           { issue.title }
         </h3>
-        <p className="font-sans font-normal text-xs text-glaucous">
+        <p className="font-sans font-normal text-xs lg:text-base text-glaucous md:mb-4 lg:mb-2">
           { issue.detail }
         </p>
         <CategoryLabel label={categoryLabel} />

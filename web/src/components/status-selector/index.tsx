@@ -3,7 +3,7 @@ import ISSUE_STATUSES, { LABEL_MAPPING, BORDER_COLOR_MAPPING } from '@/constants
 
 export default function StatusSelector({ activeStatus, onStatusChange, issuesCount }: StatusSelectorProps) {
   return (
-    <div className="overflow-x-scroll flex justify-between border-lavender border-b">
+    <div className="overflow-x-auto flex justify-between border-lavender border-b">
       { ISSUE_STATUSES.map(status => (
         <button
           className={`

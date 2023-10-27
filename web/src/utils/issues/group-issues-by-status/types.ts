@@ -1,5 +1,5 @@
-import type { Issue } from '@/feedbackr-api/v1/schemas'
+import type { Issue, IssueStatus } from '@/feedbackr-api/v1/schemas'
 
-export interface GroupedIssues {
-  [key: string]: Issue[]; 
-}
+export type GroupedIssues = {
+  [key in IssueStatus]: Issue[];
+};
