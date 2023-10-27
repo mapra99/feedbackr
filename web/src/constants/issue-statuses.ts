@@ -29,3 +29,10 @@ export const LABEL_MAPPING = {
   in_progress: 'In Progress',
   live: 'Live'
 }
+
+export const DESCRIPTION_MAPPING = {
+  suggestion: 'Open suggestions that need to be triaged',
+  planned: 'Ideas prioritized for research',
+  in_progress: 'Currently being developed',
+  live: 'Released features'
+}
