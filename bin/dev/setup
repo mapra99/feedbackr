@@ -14,24 +14,10 @@ docker compose build
 echo "Step 2/5 - Setting up environment variables..."
 cp web/.env.example web/.env.local
 
-echo "Step 3/5 - Setting up secrets..."
-
-if [ -z "$1" ]; then
-  if test -f api/config/credentials/development.key; then
-    echo "No development key provided. Skipping..."
-  else
-    echo "No development key provided. A key is required to run the development environment."
-    exit 1
-  fi
-else
-  echo $1 > api/config/credentials/development.key
-  echo $1 > api/config/credentials/test.key
-fi
-
-echo "Step 4/5 - Setting up database..."
+echo "Step 3/5 - Setting up database..."
 docker compose run api rails db:setup
 
-echo "Step 5/5 - Installing node dependencies..."
+echo "Step 4/5 - Installing node dependencies..."
 docker compose run web npm install --save-dev
 
 echo "Done! Run bin/dev/start to start the development environment."

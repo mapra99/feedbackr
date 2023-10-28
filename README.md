@@ -12,9 +12,9 @@ git clone git@github.com:mapra99/feedbackr.git
 
 2. Start the docker deamon if you haven't
 
-3. Ask for the development key to get the rails credentials and run the setup script
+3. Run the setup script
 ```bash
-bin/dev/setup <THE KEY>
+bin/dev/setup
 ```
 
 4. Start the app
