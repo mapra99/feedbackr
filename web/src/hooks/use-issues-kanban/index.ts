@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { GroupedIssues } from "@/utils/issues/group-issues-by-status/types";
-import { IssueStatus } from '@/feedbackr-api/v1/schemas';
+import { Issue, IssueStatus } from '@/feedbackr-api/v1/schemas';
 import invariant from 'tiny-invariant';
 
 export default function useIssuesKanban(initialGroupedIssues: GroupedIssues) {
@@ -19,6 +19,21 @@ export default function useIssuesKanban(initialGroupedIssues: GroupedIssues) {
     };
 
     setIssuesByStatus(newIssuesByStatus);
+    updateIssueRequest(updatedIssue, newStatus);
+  }
+
+  const updateIssueRequest = async (issue: Issue, newStatus: IssueStatus) => {
+    const formData = new FormData();
+    formData.append('issueUuid', issue.uuid)
+    formData.append('title', issue.title)
+    formData.append('category', issue.category.name)
+    formData.append('detail', issue.detail)
+    formData.append('status', newStatus);
+
+    await fetch('/api/issues', {
+      method: 'PUT',
+      body: formData
+    });
   }
 
   return {
