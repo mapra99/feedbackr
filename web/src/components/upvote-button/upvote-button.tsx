@@ -36,7 +36,7 @@ export default function UpvoteButton({ issueUuid, upvotes, initialActive = false
   return (
     <button
       className={`
-        h-8 sm:h-14 w-14 sm:w-10 px-4 sm:px-1 p-1 font-sans text-xs font-bold rounded-xl flex flex-row sm:flex-col justify-between sm:justify-center items-center gap-2 transition-all
+        h-8 @lg:h-14 w-14 @lg:w-10 px-4 @lg:px-1 p-1 font-sans text-xs font-bold rounded-xl flex flex-row @lg:flex-col justify-between @lg:justify-center items-center gap-2 transition-all
         ${selected ? 'bg-savoy-blue text-white hover:opacity-80' : 'text-marian-blue bg-ghost-white hover:bg-periwinkle'}
       `}
       onClick={handleClick}

@@ -24,7 +24,7 @@ export default function KanbanElement({ issue }: KanbanElementProps) {
   })
 
   return (
-    <div ref={drag} style={{ opacity }} className="flex flex-col gap-4 relative p-6 md:px-5 lg:p-8 rounded-xl bg-white hover:cursor-pointer">
+    <div ref={drag} style={{ opacity }} className="@container flex flex-col gap-4 relative p-6 md:px-5 lg:p-8 rounded-xl bg-white hover:cursor-pointer">
       <div className={`absolute w-full left-0 top-0 h-1.5 rounded-tl-xl rounded-tr-xl ${BG_COLOR_MAPPING[issue.status]}`} />
 
       <StatusLabel status={issue.status} size="small" />
