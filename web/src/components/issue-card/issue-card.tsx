@@ -8,7 +8,7 @@ export default function IssueCard({ issue }: IssueCardProps) {
   const categoryLabel = ISSUE_CATEGORY_LABELS.find((category) => category.name === issue.category.name)?.label
 
   return (
-    <div className="bg-white rounded-xl p-6 sm:py-7 sm:pl-8 sm:pr-20 text-marian-blue flex flex-col sm:flex-row sm:relative sm:gap-10">
+    <div className="@container bg-white rounded-xl p-6 sm:py-7 sm:pl-8 sm:pr-20 text-marian-blue flex flex-col sm:flex-row sm:relative sm:gap-10">
       <div className="sm:order-2">
         <h3 className="font-sans text-xs sm:text-xl font-bold mb-2 sm:mb-1">
           { issue.title }

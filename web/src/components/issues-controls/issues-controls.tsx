@@ -3,7 +3,6 @@
 import FilterSelect from '@/components/filter-select'
 import { LinkButton } from '@/components/button'
 import { BulbIcon } from '@/icons'
-import { useMdBreakpoint } from '@/hooks/use-breakpoints'
 import { useRouter } from 'next/navigation'
 import updateCurrentPath from '@/utils/update-current-path'
 
@@ -17,8 +16,7 @@ const SORT_OPTIONS = [
   { id: 'comments_asc', label: 'Least Comments', value: { field: 'comments', desc: false } }
 ]
 
-export default function IssuesControls({ issuesCount, productSlug, sortParams }: IssuesControlsProps) {
-  const mobile = !useMdBreakpoint()
+export default function IssuesControls({ issuesCount, productSlug, sortParams, isPhone = false }: IssuesControlsProps) {
   const router = useRouter()
 
   const handleFilterSelect = (selectedId: string) => {
@@ -36,7 +34,7 @@ export default function IssuesControls({ issuesCount, productSlug, sortParams }:
   return (
     <div className="w-full bg-delft-blue h-16 sm:h-20 px-6 text-white flex items-center justify-between md:rounded-xl">
       <div className="flex gap-8 items-center">
-        <div className={`${mobile ? 'hidden' : 'flex'} items-center gap-3`}>
+        <div className={`${isPhone ? 'hidden' : 'flex'} items-center gap-3`}>
           <div className="w-6 h-6 text-white">
             <BulbIcon />
           </div>

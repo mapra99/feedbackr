@@ -7,4 +7,5 @@ export interface IssuesControlsProps {
   productSlug: string
   issuesCount: number
   sortParams: SortParams
+  isPhone?: boolean
 }

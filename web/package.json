@@ -10,14 +10,18 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.6",
+    "@tailwindcss/container-queries": "^0.1.1",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
+    "express-useragent": "^1.0.15",
     "next": "13.4.2",
     "postcss": "8.4.23",
     "react": "18.2.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.2.0",
     "react-responsive": "^9.0.2",
     "server-only": "^0.0.1",
@@ -32,6 +36,7 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.2.14",
+    "@types/express-useragent": "^1.0.3",
     "@types/node": "^20.2.5"
   }
 }

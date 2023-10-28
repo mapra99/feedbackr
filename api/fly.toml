@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for feedbackr-api on 2023-06-07T18:24:55-05:00
+# fly.toml app configuration file generated for feedbackr-api on 2023-10-28T14:27:37-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -15,7 +15,6 @@ kill_timeout = "5s"
   dockerfile = "./Dockerfile.production"
 
 [deploy]
-  # release_command = "bundle exec rails db:migrate"
 
 [env]
   PRIMARY_REGION = "sjc"
@@ -45,4 +44,3 @@ kill_timeout = "5s"
     interval = "15s"
     timeout = "2s"
     grace_period = "1s"
-    restart_limit = 0
