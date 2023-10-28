@@ -4,7 +4,7 @@ import KanbanElement from '@/components/kanban-element'
 import { useDrop } from 'react-dnd'
 import { ISSUE_CARD_TYPE, type IssueCardDropData } from '@/components/issues-kanban/dnd-config'
 
-export default function KanbanColumn({ status, issues, onIssueDrop }: KanbanColumnProps) {
+export default function KanbanColumn({ status, issues, productSlug, onIssueDrop }: KanbanColumnProps) {
   const handleDrop = (dropData: IssueCardDropData) => {
     const { issueUuid, currentStatus } = dropData
 
@@ -41,7 +41,7 @@ export default function KanbanColumn({ status, issues, onIssueDrop }: KanbanColu
         ref={drop}
       >
         { issues.map(issue => (
-          <KanbanElement issue={issue} key={issue.uuid} />
+          <KanbanElement issue={issue} key={issue.uuid} productSlug={productSlug} />
         )) }
       </div>
     </div>

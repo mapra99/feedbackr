@@ -7,6 +7,8 @@ export default function useIssuesKanban(initialGroupedIssues: GroupedIssues) {
   const [issuesByStatus, setIssuesByStatus] = useState(initialGroupedIssues);
 
   const handleIssueDrop = (issueUuid: string, currentStatus: IssueStatus, newStatus: IssueStatus) => {
+    if (currentStatus === newStatus) return;
+
     const issue = issuesByStatus[currentStatus].find((issue) => issue.uuid === issueUuid);
     invariant(issue, `Could not find issue with uuid ${issueUuid} in status ${currentStatus}`);
 

@@ -8,8 +8,9 @@ import UpvoteButton from '@/components/upvote-button'
 import CommentsCounter from '@/components/comments-counter'
 import { useDrag } from 'react-dnd'
 import { ISSUE_CARD_TYPE, type IssueCardDropData } from '@/components/issues-kanban/dnd-config'
+import Link from 'next/link'
 
-export default function KanbanElement({ issue }: KanbanElementProps) {
+export default function KanbanElement({ issue, productSlug }: KanbanElementProps) {
   const categoryLabel = ISSUE_CATEGORY_LABELS.find((category) => category.name === issue.category.name)?.label
   invariant(categoryLabel, `Category label not found for category name: ${issue.category.name}`)
 
@@ -24,7 +25,7 @@ export default function KanbanElement({ issue }: KanbanElementProps) {
   })
 
   return (
-    <div ref={drag} style={{ opacity }} className="@container flex flex-col gap-4 relative p-6 md:px-5 lg:p-8 rounded-xl bg-white hover:cursor-pointer">
+    <Link ref={drag} href={`${productSlug}/issues/${issue.uuid}`} style={{ opacity }} className="@container flex flex-col gap-4 relative p-6 md:px-5 lg:p-8 rounded-xl bg-white hover:cursor-pointer">
       <div className={`absolute w-full left-0 top-0 h-1.5 rounded-tl-xl rounded-tr-xl ${BG_COLOR_MAPPING[issue.status]}`} />
 
       <StatusLabel status={issue.status} size="small" />
@@ -43,6 +44,6 @@ export default function KanbanElement({ issue }: KanbanElementProps) {
         <UpvoteButton issueUuid={issue.uuid} upvotes={issue.upvotes} initialActive={issue.alreadyUpvoted} />
         <CommentsCounter commentsCount={issue.commentsCount} />
       </div>
-    </div>
+    </Link>
   )
 }

@@ -25,7 +25,7 @@ export default async function ProductRoadmapPage({ params }: ProductRoadmapPageP
     <div className="w-full flex flex-col pb-10 md:py-14 md:px-10 md:gap-8 lg:gap-12 lg:py-20 max-w-7xl mx-auto">
       <RoadmapHeader productSlug={params.slug} />
       <div className="lg:flex-1">
-        <IssuesKanban groupedIssues={groupedIssues} />
+        <IssuesKanban groupedIssues={groupedIssues} productSlug={product.slug} />
       </div>
     </div>
   )
