@@ -6,13 +6,25 @@ import ISSUE_CATEGORY_LABELS from '@/constants/issue-category-labels'
 import invariant from 'tiny-invariant'
 import UpvoteButton from '@/components/upvote-button'
 import CommentsCounter from '@/components/comments-counter'
+import { useDrag } from 'react-dnd'
+import { ISSUE_CARD_TYPE, type IssueCardDropData } from '@/components/issues-kanban/dnd-config'
 
 export default function KanbanElement({ issue }: KanbanElementProps) {
   const categoryLabel = ISSUE_CATEGORY_LABELS.find((category) => category.name === issue.category.name)?.label
   invariant(categoryLabel, `Category label not found for category name: ${issue.category.name}`)
 
+  const dropData: IssueCardDropData = { issueUuid: issue.uuid, currentStatus: issue.status }
+
+  const [{ opacity }, drag] = useDrag({
+    type: ISSUE_CARD_TYPE,
+    item: dropData,
+    collect: (monitor) => ({
+      opacity: monitor.isDragging() ? 0.4 : 1
+    }),
+  })
+
   return (
-    <div className="flex flex-col gap-4 relative p-6 md:px-5 lg:p-8 rounded-xl bg-white">
+    <div ref={drag} style={{ opacity }} className="flex flex-col gap-4 relative p-6 md:px-5 lg:p-8 rounded-xl bg-white hover:cursor-pointer">
       <div className={`absolute w-full left-0 top-0 h-1.5 rounded-tl-xl rounded-tr-xl ${BG_COLOR_MAPPING[issue.status]}`} />
 
       <StatusLabel status={issue.status} size="small" />
