@@ -5,24 +5,30 @@ import StatusSelector from "@/components/status-selector"
 import KanbanColumn from "@/components/kanban-column"
 import { IssuesKanbanProps } from "./types"
 import type { IssueStatus } from "@/feedbackr-api/v1/schemas";
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
+import useIssuesKanban from "@/hooks/use-issues-kanban";
 
 export default function MobileIssuesKanban({ groupedIssues }: IssuesKanbanProps) {
   const [activeStatus, setActiveStatus] = useState<IssueStatus>('planned')
+  const { issuesByStatus, handleIssueDrop } = useIssuesKanban(groupedIssues);
   const handleStatusChange = (status: IssueStatus) => { setActiveStatus(status) }
 
   const issuesCount: { [key: string]: number } = {}
   Object.keys(groupedIssues).forEach(status => {
-    issuesCount[status] = groupedIssues[status].length
+    issuesCount[status] = issuesByStatus[status as IssueStatus].length
   })
 
-  const issues = groupedIssues[activeStatus]
+  const issues = issuesByStatus[activeStatus]
 
   return (
-    <div className="flex flex-col gap-6">
-      <StatusSelector activeStatus={activeStatus} onStatusChange={handleStatusChange} issuesCount={issuesCount} />
-      <div className="px-6">
-        <KanbanColumn status={activeStatus} issues={issues} />
+    <DndProvider backend={HTML5Backend}>
+      <div className="flex flex-col gap-6">
+        <StatusSelector activeStatus={activeStatus} onStatusChange={handleStatusChange} issuesCount={issuesCount} />
+        <div className="px-6">
+          <KanbanColumn status={activeStatus} issues={issues} onIssueDrop={handleIssueDrop} />
+        </div>
       </div>
-    </div>
+    </DndProvider>
   )
 }
